@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="keywords" content="" />
+<meta http-equiv="description" content="" />
+<title>信贷经理-客户问答-新越网平台问题</title>
+<link rel="icon" href="../images/moke.ico" />
+<link href="../css/base.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" runat="server" src="../js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".left ul li #a").click(function(){ 
+		$(this).parent().find('.fnav').removeClass("menu_chioce");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('.fnav').slideToggle();
+		$(this).parent().find('.fnav').addClass("menu_chioce");
+	});
+})
+</script>
+<script>
+$(document).ready(function(){
+$(".gly").click(function(){
+    $(".zkcd").slideToggle("slow");
+  });
+});
+</script> 
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript" runat="server"></script>
+<script src="../js/My97DatePicker.4.8/WdatePicker.js" type="text/javascript" runat="server"></script>
+<script>
+$(function(){
+	$(".khwd_list ul .khwd_li #wdbt").click(function(){ 
+		$(this).parent().find('#tck').removeClass("menu_chioce");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('#tck').slideToggle();
+		$(this).parent().find('#tck').addClass("menu_chioce");
+	});
+})
+$(function(){
+	$(".khwd_list ul .khwd_li #tck .hdwt_nr1 .yc_wt_tck").click(function(){ 
+		$(this).parent().removeClass("menu_chioce");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().slideToggle();
+		$(this).parent().addClass("menu_chioce");
+	});
+})
+$(function(){
+	$(".khwd_list ul .khwd_li #wdbt").dblclick(function(){
+		window.open("khwd_xq.html");
+	}
+	)
+})
+function tab_item(n)
+{
+		var menu = document.getElementById("menu");
+		var menuli = menu.getElementsByTagName("li");
+		for(var i = 0; i< menuli.length; i++)
+		{
+			menuli[i].className="";
+			menuli[n].className="hit";
+			document.getElementById("tab"+ i).style.display = "none";
+			document.getElementById("tab"+ n).style.display = "block";
+		}
+} 
+
+</script>
+</head>
+
+<body>
+<div class="main">
+<div class="left">
+<ul>
+<li class="logo bj0"><Img src="../images/logo.png" onclick="window.open('')" /></li>
+<li class="bj0"><span>信贷经理中心</span></li>
+<li><a class="zy" id="a">我的主页</a>
+<ul class="fnav">
+<li><a href="index_xd.html">我的主页</a></li>
+</ul>
+</li>
+<li><a class="zh" id="a">账户管理</a>
+<ul class="fnav">
+<li><a href="grzl.html">个人中心</a></li>
+<li><a href="news.html">我的消息</a></li>
+<li><a href="tjhy.html">分享推荐会员</a></li>
+<li><a href="zjgl.html">资金管理</a></li>
+<li><a href="jfgl.html">积分管理</a></li>
+</ul>
+</li>
+<li><a class="cp" id="a">产品推广</a>
+<ul class="fnav">
+<li><a href="cptg.html">产品推广</a></li>
+</ul>
+</li>
+<li><a class="xx" id="a">信息查询</a>
+<ul class="fnav">
+<li><a href="xxcx.html">企业信息下载明细</a></li>
+<li><a href="xxcx1.html">人员信息下载明细</a></li>
+<li><a href="xxcx2.html">企业投资信息下载明细</a></li>
+</ul>
+</li>
+<li><a class="kh" id="a">客户管理</a>
+<ul class="fnav">
+<li><a href="khgl.html" >推送客户</a></li>
+<li><a href="lqkh.html" >领取客户</a></li>
+<li><a href="yhpj.html" >客户评价</a></li>
+</ul>
+</li>
+<li><a class="hq" id="a">获取客户</a>
+<ul class="fnav">
+<li><a href="ljlq.html" >立即领取</a></li>
+<li><a href="jpkh.html" >竞拍客户</a></li>
+<li><a href="wydj.html" >唯一低价</a></li>
+<li><a href="wdcj.html" >我的出价</a></li>
+<li><a href="wdkh2.html" >我的客户</a></li>
+</ul>
+</li>
+<li class="hit"><a class="wd" id="a">客户问答</a>
+<ul class="fnav">
+<li class="hit"><a href="ptwd.html">平台问答</a></li>
+<li><a href="jgwd.html">机构问答</a></li>
+<li><a href="wdwd.html">我的问答</a></li>
+</ul>
+</li>
+<li><a class="al" id="a">成功案例</a>
+<ul class="fnav">
+<li><a href="cgal.html">成功案例</a></li>
+</ul>
+</li>
+<li><a class="bz" id="a">帮助中心</a>
+<ul class="fnav">
+<li><a href="bzzx.html">帮助中心</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div class="right">
+<div class="r1">
+<div class="r1_l">
+<a href="#" class="xl" title="新浪分享"></a>
+<a href="#" class="wx" title="微信分享"></a>
+<a href="#" class="qq" title="qq分享"></a>
+<div class="clear"></div>
+</div>
+<div class="r1_r">
+<a href="cptg.html" class="cp" title="新产品"><span>3</span></a>
+<a href="news.html" class="xx" title="新消息"><span>12</span></a>
+<a href="#" class="gly" title="">刘小小</a>
+<div class="zkcd"><a href="xgmm.html">修改密码</a><a href="login.html">退出</a></div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="grzl">
+<div class="grzx_bt">
+<span>客户问答</span>
+</div>
+<div class="grzx_nr">
+<div class="khwd_nr1">
+<div class="khwd_nr1_top">
+<span class="wdbt">我的回答：</span>
+<ul>
+<li><span>待审核<br /><strong>32</strong></span></li>
+<li><span>审核通过<br /><strong>312</strong></span></li>
+<li><span>未通过<br /><strong>1</strong></span></li>
+<li><span>通过率<br /><strong>99%</strong></span></li>
+<li class="wd_n_bj"><span>获得积分<br /><strong>132</strong></span></li>
+<div class="clear"></div>
+</ul>
+</div>
+<div class="khwd_nr1_top">
+<span class="wdbt">最近回答：</span>
+<ul>
+<li><span>昨日回答<br /><strong>32</strong></span></li>
+<li><span>今日排名<br /><strong>312</strong></span></li>
+<li class="wd_n_bj"><span>今日回答<br /><strong>1</strong></span></li>
+<div class="clear"></div>
+</ul>
+</div>
+</div>
+<div class="grzx_nr1">
+<ul>
+<li><a href="ptwd.html" class="hit">新越网平台问题</a></li>
+<li><a href="jgwd.html">所在机构问题</a></li>
+</ul>
+</div>
+
+<div class="news_nr">
+<div class="news_btn1">
+<ul class="wd_tab" id="menu">
+<li class="hit"><a href="ptwd.html"><span>少回答问题</span></a></li>
+<li><a href="rmwt.html"><span>热门问题</span></a></li> 
+<li><a href="wdwd.html"><span>我的回答</span></a></li> 
+</ul>
+</div>
+<div class="wd_cx">
+<select class="wdsx">
+<option selected="selected">按贷款知识筛选</option>
+<option>常用知识</option>
+<option>贷款流程</option>
+<option>资质咨询</option>
+<option>利息咨询</option>
+</select>
+<select class="wdsx">
+<option selected="selected">按产品类型筛选</option>
+<option>无抵押贷款</option>
+<option>抵押贷款</option>
+<option>按揭贷款</option>
+</select>
+<select class="wdsx">
+<option selected="selected">按贷款类型筛选</option>
+<option>消费贷款</option>
+<option>经营贷款</option>
+<option>买车贷款</option>
+<option>买房贷款</option>
+</select>
+<select class="wdsx">
+<option selected="selected">按地区筛选</option>
+<option>杭州</option>
+<option>嘉兴</option>
+</select>
+</div>
+<div class="khwd_list" id="tab0">
+<ul>
+<li class="khwd_li" onmouseover="style.background='#eee'" onmouseout="style.background='none'">
+<i class="jljftb"></i>
+<span class="jljfsz">+5分</span>
+<a class="wd_bt" id="wdbt">如果我在银行贷款30万元，还了3年，剩下多少钱没还？</a>
+<span class="twsj">2015-05-12 12:33</span>
+<span class="hdgs">0个回答</span>
+<div class="clear"></div>
+<div class="hdwt_tck" id="tck">
+<div class="hdwt_nr1"><span class="wt_ms">提问者：<strong>普通会员</strong></span><a class="yc_wt_tck">收起</a></div>
+<div class="hdwt_nr2">
+<form>
+<p><textarea class="hdwt_textarea1"></textarea></p>
+<p class="nm_p"><input type="checkbox" class="nmhdwt_c1" /><span>匿名回答</span></p>
+<p class="nm_p"><input type="button" class="hdwt_btn" value="回答" /></p>
+</form>
+</div>
+</div>
+</li> 
+<li class="khwd_li" onmouseover="style.background='#eee'" onmouseout="style.background='none'">
+<i class="jljftb"></i>
+<span class="jljfsz">+5分</span>
+<a class="wd_bt" id="wdbt">如果我在银行贷款30万元，还了3年，剩下多少钱没还？</a>
+<span class="twsj">2015-05-12 12:33</span>
+<span class="hdgs">0个回答</span>
+<div class="clear"></div>
+<div class="hdwt_tck" id="tck">
+<div class="hdwt_nr1"><span class="wt_ms">提问者：<strong>普通会员</strong></span><a class="yc_wt_tck">收起</a></div>
+<div class="hdwt_nr2">
+<form>
+<p><textarea class="hdwt_textarea1"></textarea></p>
+<p class="nm_p"><input type="checkbox" class="nmhdwt_c1" /><span>匿名回答</span></p>
+<p class="nm_p"><input type="button" class="hdwt_btn" value="回答" /></p>
+</form>
+</div>
+</div>
+</li>
+<li class="khwd_li" onmouseover="style.background='#eee'" onmouseout="style.background='none'">
+<i class="jljftb"></i>
+<span class="jljfsz">+5分</span>
+<a class="wd_bt" id="wdbt">如果我在银行贷款30万元，还了3年，剩下多少钱没还？</a>
+<span class="twsj">2015-05-12 12:33</span>
+<span class="hdgs">0个回答</span>
+<div class="clear"></div>
+<div class="hdwt_tck" id="tck">
+<div class="hdwt_nr1"><span class="wt_ms">提问者：<strong>普通会员</strong></span><a class="yc_wt_tck">收起</a></div>
+<div class="hdwt_nr2">
+<form>
+<p><textarea class="hdwt_textarea1"></textarea></p>
+<p class="nm_p"><input type="checkbox" class="nmhdwt_c1" /><span>匿名回答</span></p>
+<p class="nm_p"><input type="button" class="hdwt_btn" value="回答" /></p>
+</form>
+</div>
+</div>
+</li>
+<li class="khwd_li" onmouseover="style.background='#eee'" onmouseout="style.background='none'">
+<i class="jljftb"></i>
+<span class="jljfsz">+5分</span>
+<a class="wd_bt" id="wdbt">如果我在银行贷款30万元，还了3年，剩下多少钱没还？</a>
+<span class="twsj">2015-05-12 12:33</span>
+<span class="hdgs">0个回答</span>
+<div class="clear"></div>
+<div class="hdwt_tck" id="tck">
+<div class="hdwt_nr1"><span class="wt_ms">提问者：<strong>普通会员</strong></span><a class="yc_wt_tck">收起</a></div>
+<div class="hdwt_nr2">
+<form>
+<p><textarea class="hdwt_textarea1"></textarea></p>
+<p class="nm_p"><input type="checkbox" class="nmhdwt_c1" /><span>匿名回答</span></p>
+<p class="nm_p"><input type="button" class="hdwt_btn" value="回答" /></p>
+</form>
+</div>
+</div>
+</li>
+<li class="khwd_li" onmouseover="style.background='#eee'" onmouseout="style.background='none'">
+<i class="jljftb"></i>
+<span class="jljfsz">+5分</span>
+<a class="wd_bt" id="wdbt">如果我在银行贷款30万元，还了3年，剩下多少钱没还？</a>
+<span class="twsj">2015-05-12 12:33</span>
+<span class="hdgs">0个回答</span>
+<div class="clear"></div>
+<div class="hdwt_tck" id="tck">
+<div class="hdwt_nr1"><span class="wt_ms">提问者：<strong>普通会员</strong></span><a class="yc_wt_tck">收起</a></div>
+<div class="hdwt_nr2">
+<form>
+<p><textarea class="hdwt_textarea1"></textarea></p>
+<p class="nm_p"><input type="checkbox" class="nmhdwt_c1" /><span>匿名回答</span></p>
+<p class="nm_p"><input type="button" class="hdwt_btn" value="回答" /></p>
+</form>
+</div>
+</div>
+</li>
+<li class="khwd_li" onmouseover="style.background='#eee'" onmouseout="style.background='none'">
+<i class="jljftb"></i>
+<span class="jljfsz">+5分</span>
+<a class="wd_bt" id="wdbt">如果我在银行贷款30万元，还了3年，剩下多少钱没还？</a>
+<span class="twsj">2015-05-12 12:33</span>
+<span class="hdgs">0个回答</span>
+<div class="clear"></div>
+<div class="hdwt_tck" id="tck">
+<div class="hdwt_nr1"><span class="wt_ms">提问者：<strong>普通会员</strong></span><a class="yc_wt_tck">收起</a></div>
+<div class="hdwt_nr2">
+<form>
+<p><textarea class="hdwt_textarea1"></textarea></p>
+<p class="nm_p"><input type="checkbox" class="nmhdwt_c1" /><span>匿名回答</span></p>
+<p class="nm_p"><input type="button" class="hdwt_btn" value="回答" /></p>
+</form>
+</div>
+</div>
+</li>
+<li class="khwd_li" onmouseover="style.background='#eee'" onmouseout="style.background='none'">
+<i class="jljftb"></i>
+<span class="jljfsz">+5分</span>
+<a class="wd_bt" id="wdbt">如果我在银行贷款30万元，还了3年，剩下多少钱没还？</a>
+<span class="twsj">2015-05-12 12:33</span>
+<span class="hdgs">0个回答</span>
+<div class="clear"></div>
+<div class="hdwt_tck" id="tck">
+<div class="hdwt_nr1"><span class="wt_ms">提问者：<strong>普通会员</strong></span><a class="yc_wt_tck">收起</a></div>
+<div class="hdwt_nr2">
+<form>
+<p><textarea class="hdwt_textarea1"></textarea></p>
+<p class="nm_p"><input type="checkbox" class="nmhdwt_c1" /><span>匿名回答</span></p>
+<p class="nm_p"><input type="button" class="hdwt_btn" value="回答" /></p>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="page">
+<ul>
+<li><span>共323条记录</span></li>
+<li><span>1/7页</span></li>
+<li><a href="#">下一页</a></li>
+<li class="tz_li"><span>跳转到第</span><input type="text" class="ymsr" /><span>页</span><input type="button" value="跳转" class="tz_btn" /></li>
+</ul>
+</div>
+
+</div>
+
+</div></div>
+<div class="clear"></div>
+</div>
+</body>
+</html>
