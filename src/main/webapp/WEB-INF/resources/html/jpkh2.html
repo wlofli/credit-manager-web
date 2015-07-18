@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="keywords" content="" />
+<meta http-equiv="description" content="" />
+<title>信贷经理-获取客户-竞拍客户</title>
+<link rel="icon" href="../images/moke.ico" />
+<link href="../css/base.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" runat="server" src="../js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".left ul li #a").click(function(){ 
+		$(this).parent().find('.fnav').removeClass("menu_chioce");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('.fnav').slideToggle();
+		$(this).parent().find('.fnav').addClass("menu_chioce");
+	});
+})
+</script>
+<script>
+$(document).ready(function(){
+$(".gly").click(function(){
+    $(".zkcd").slideToggle("slow");
+  });
+});
+</script> 
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript" runat="server"></script>
+<script src="../js/My97DatePicker.4.8/WdatePicker.js" type="text/javascript" runat="server"></script>
+</head>
+
+<body>
+<div class="main">
+<div class="left">
+<ul>
+<li class="logo bj0"><Img src="../images/logo.png" onclick="window.open('')" /></li>
+<li class="bj0"><span>信贷经理中心</span></li>
+<li><a class="zy" id="a">我的主页</a>
+<ul class="fnav">
+<li><a href="index_xd.html">我的主页</a></li>
+</ul>
+</li>
+<li><a class="zh" id="a">账户管理</a>
+<ul class="fnav">
+<li><a href="grzl.html">个人中心</a></li>
+<li><a href="news.html">我的消息</a></li>
+<li><a href="tjhy.html">分享推荐会员</a></li>
+<li><a href="zjgl.html">资金管理</a></li>
+<li><a href="jfgl.html">积分管理</a></li>
+</ul>
+</li>
+<li><a class="cp" id="a">产品推广</a>
+<ul class="fnav">
+<li><a href="cptg.html">产品推广</a></li>
+</ul>
+</li>
+<li><a class="xx" id="a">信息查询</a>
+<ul class="fnav">
+<li><a href="xxcx.html">企业信息下载明细</a></li>
+<li><a href="xxcx1.html">人员信息下载明细</a></li>
+<li><a href="xxcx2.html">企业投资信息下载明细</a></li>
+</ul>
+</li>
+<li><a class="kh" id="a">客户管理</a>
+<ul class="fnav">
+<li><a href="khgl.html" >推送客户</a></li>
+<li><a href="lqkh.html" >领取客户</a></li>
+<li><a href="yhpj.html" >客户评价</a></li>
+</ul>
+</li>
+<li class="hit"><a class="hq" id="a">获取客户</a>
+<ul class="fnav">
+<li><a href="ljlq.html" >立即领取</a></li>
+<li class="hit"><a href="jpkh.html" >竞拍客户</a></li>
+<li><a href="wydj.html" >唯一低价</a></li>
+<li><a href="wdcj.html" >我的出价</a></li>
+<li><a href="wdkh2.html" >我的客户</a></li>
+</ul>
+</li>
+<li><a class="wd" id="a">客户问答</a>
+<ul class="fnav">
+<li><a href="ptwd.html">平台问答</a></li>
+<li><a href="jgwd.html">机构问答</a></li>
+<li><a href="wdwd.html">我的问答</a></li>
+</ul>
+</li>
+<li><a class="al" id="a">成功案例</a>
+<ul class="fnav">
+<li><a href="cgal.html">成功案例</a></li>
+</ul>
+</li>
+<li><a class="bz" id="a">帮助中心</a>
+<ul class="fnav">
+<li><a href="bzzx.html">帮助中心</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div class="right">
+<div class="r1">
+<div class="r1_l">
+<a href="#" class="xl" title="新浪分享"></a>
+<a href="#" class="wx" title="微信分享"></a>
+<a href="#" class="qq" title="qq分享"></a>
+<div class="clear"></div>
+</div>
+<div class="r1_r">
+<a href="cptg.html" class="cp" title="新产品"><span>3</span></a>
+<a href="news.html" class="xx" title="新消息"><span>12</span></a>
+<a href="#" class="gly" title="">刘小小</a>
+<div class="zkcd"><a href="xgmm.html">修改密码</a><a href="login.html">退出</a></div>
+<div class="clear"></div>
+</div>
+</div><div class="grzl">
+<div class="grzx_bt">
+<span>竞拍客户</span><a href="javascript:show2()">规则说明</a>
+</div>
+<div class="grzx_nr1">
+<ul>
+<li><a href="jpkh.html">正在进行</a></li>
+<li><a href="jpkh1.html">即将开始</a></li>
+<li><a href="jpkh2.html" class="hit">已经结束</a></li>
+</ul>
+</div>
+<div class="khgl_top">
+<div class="khgl_top2">
+<div class="gjsx">
+<span>所在城市：</span><input type="text" class="ddbh" value="杭州" /><span class="xzcp_bt">贷款金额：</span><select class="xzcp_s1"><option>请选择</option></select><span class="xzcp_bt">贷款期限：</span><select class="xzcp_s1"><option>请选择</option></select><span class="xzcp_bt">职业身份：</span><select class="xzcp_s1"><option>请选择</option></select><br />
+<span>&nbsp;&nbsp;&nbsp;月收入：</span><input type="text" class="ddbh" /><span class="xzcp_bt">车辆情况：</span><select class="xzcp_s1"><option>请选择</option></select><span class="xzcp_bt">房产情况：</span><select class="xzcp_s1"><option>请选择</option></select> <input type="button" class="cx_btn" value="查 询" />
+ 
+</div>
+
+</div>
+</div>
+<div class="ljlq_bt">共有<strong>232</strong>条结果</div>
+<div class="jpkh_list">
+<ul>
+<li>
+<div class="jpkh">
+<div class="jpkh_top">
+<div class="tx_left">
+<Img src="../images/tx1.jpg" />
+<span>王某某</span>
+</div>
+<div class="tx_right">
+<p>
+<span>15万元/12个月</span>
+<span>贷款用途：短期周转</span>
+<span>企业类型：个体户</span>
+<span>担保方式：质押</span>
+</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="jpkh_gw"><span>【顾问点评】：</span>本地户籍，经营人群，提供营业执照和近半年银行卡流水……</div>
+<div class="jpkh_cj">
+<p class="cj_p_left">
+<span class="cj_left">一口价：325元</span>
+<span class="cj_left">起拍价：115元</span>
+</p>
+<p class="cj_p_right"><span>￥115元</span></p>
+</div>
+<div class="jpkh_jp_an">
+<a href="#" class="jp_btn_grey">已结束</a>
+</div>
+</div>
+</li> 
+<li>
+<div class="jpkh">
+<div class="jpkh_top">
+<div class="tx_left">
+<Img src="../images/tx1.jpg" />
+<span>王某某</span>
+</div>
+<div class="tx_right">
+<p>
+<span>15万元/12个月</span>
+<span>贷款用途：短期周转</span>
+<span>企业类型：个体户</span>
+<span>担保方式：质押</span>
+</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="jpkh_gw"><span>【顾问点评】：</span>本地户籍，经营人群，提供营业执照和近半年银行卡流水……</div>
+<div class="jpkh_cj">
+<p class="cj_p_left">
+<span class="cj_left">一口价：325元</span>
+<span class="cj_left">起拍价：115元</span>
+</p>
+<p class="cj_p_right"><span>￥115元</span></p>
+</div>
+<div class="jpkh_jp_an">
+<a href="#" class="jp_btn_grey">已结束</a>
+</div>
+</div>
+</li> 
+<li>
+<div class="jpkh">
+<div class="jpkh_top">
+<div class="tx_left">
+<Img src="../images/tx1.jpg" />
+<span>王某某</span>
+</div>
+<div class="tx_right">
+<p>
+<span>15万元/12个月</span>
+<span>贷款用途：短期周转</span>
+<span>企业类型：个体户</span>
+<span>担保方式：质押</span>
+</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="jpkh_gw"><span>【顾问点评】：</span>本地户籍，经营人群，提供营业执照和近半年银行卡流水……</div>
+<div class="jpkh_cj">
+<p class="cj_p_left">
+<span class="cj_left">一口价：325元</span>
+<span class="cj_left">起拍价：115元</span>
+</p>
+<p class="cj_p_right"><span>￥115元</span></p>
+</div>
+<div class="jpkh_jp_an">
+<a href="#" class="jp_btn_grey">已结束</a>
+</div>
+</div>
+</li> 
+<li>
+<div class="jpkh">
+<div class="jpkh_top">
+<div class="tx_left">
+<Img src="../images/tx1.jpg" />
+<span>王某某</span>
+</div>
+<div class="tx_right">
+<p>
+<span>15万元/12个月</span>
+<span>贷款用途：短期周转</span>
+<span>企业类型：个体户</span>
+<span>担保方式：质押</span>
+</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="jpkh_gw"><span>【顾问点评】：</span>本地户籍，经营人群，提供营业执照和近半年银行卡流水……</div>
+<div class="jpkh_cj">
+<p class="cj_p_left">
+<span class="cj_left">一口价：325元</span>
+<span class="cj_left">起拍价：115元</span>
+</p>
+<p class="cj_p_right"><span>￥115元</span></p>
+</div>
+<div class="jpkh_jp_an">
+<a href="#" class="jp_btn_grey">已结束</a>
+</div>
+</div>
+</li> 
+<li>
+<div class="jpkh">
+<div class="jpkh_top">
+<div class="tx_left">
+<Img src="../images/tx1.jpg" />
+<span>王某某</span>
+</div>
+<div class="tx_right">
+<p>
+<span>15万元/12个月</span>
+<span>贷款用途：短期周转</span>
+<span>企业类型：个体户</span>
+<span>担保方式：质押</span>
+</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="jpkh_gw"><span>【顾问点评】：</span>本地户籍，经营人群，提供营业执照和近半年银行卡流水……</div>
+<div class="jpkh_cj">
+<p class="cj_p_left">
+<span class="cj_left">一口价：325元</span>
+<span class="cj_left">起拍价：115元</span>
+</p>
+<p class="cj_p_right"><span>￥115元</span></p>
+</div>
+<div class="jpkh_jp_an">
+<a href="#" class="jp_btn_grey">已结束</a>
+</div>
+</div>
+</li> 
+<li>
+<div class="jpkh">
+<div class="jpkh_top">
+<div class="tx_left">
+<Img src="../images/tx1.jpg" />
+<span>王某某</span>
+</div>
+<div class="tx_right">
+<p>
+<span>15万元/12个月</span>
+<span>贷款用途：短期周转</span>
+<span>企业类型：个体户</span>
+<span>担保方式：质押</span>
+</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="jpkh_gw"><span>【顾问点评】：</span>本地户籍，经营人群，提供营业执照和近半年银行卡流水……</div>
+<div class="jpkh_cj">
+<p class="cj_p_left">
+<span class="cj_left">一口价：325元</span>
+<span class="cj_left">起拍价：115元</span>
+</p>
+<p class="cj_p_right"><span>￥115元</span></p>
+</div>
+<div class="jpkh_jp_an">
+<a href="#" class="jp_btn_grey">已结束</a>
+</div>
+</div>
+</li> 
+<li>
+<div class="jpkh">
+<div class="jpkh_top">
+<div class="tx_left">
+<Img src="../images/tx1.jpg" />
+<span>王某某</span>
+</div>
+<div class="tx_right">
+<p>
+<span>15万元/12个月</span>
+<span>贷款用途：短期周转</span>
+<span>企业类型：个体户</span>
+<span>担保方式：质押</span>
+</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="jpkh_gw"><span>【顾问点评】：</span>本地户籍，经营人群，提供营业执照和近半年银行卡流水……</div>
+<div class="jpkh_cj">
+<p class="cj_p_left">
+<span class="cj_left">一口价：325元</span>
+<span class="cj_left">起拍价：115元</span>
+</p>
+<p class="cj_p_right"><span>￥115元</span></p>
+</div>
+<div class="jpkh_jp_an">
+<a href="#" class="jp_btn_grey">已结束</a>
+</div>
+</div>
+</li> 
+<li>
+<div class="jpkh">
+<div class="jpkh_top">
+<div class="tx_left">
+<Img src="../images/tx1.jpg" />
+<span>王某某</span>
+</div>
+<div class="tx_right">
+<p>
+<span>15万元/12个月</span>
+<span>贷款用途：短期周转</span>
+<span>企业类型：个体户</span>
+<span>担保方式：质押</span>
+</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="jpkh_gw"><span>【顾问点评】：</span>本地户籍，经营人群，提供营业执照和近半年银行卡流水……</div>
+<div class="jpkh_cj">
+<p class="cj_p_left">
+<span class="cj_left">一口价：325元</span>
+<span class="cj_left">起拍价：115元</span>
+</p>
+<p class="cj_p_right"><span>￥115元</span></p>
+</div>
+<div class="jpkh_jp_an">
+<a href="#" class="jp_btn_grey">已结束</a>
+</div>
+</div>
+</li> 
+</ul>
+</div>
+<div class="page">
+<ul>
+<li><span>共323条记录</span></li>
+<li><span>1/7页</span></li>
+<li><a href="#">下一页</a></li>
+<li class="tz_li"><span>跳转到第</span><input type="text" class="ymsr" /><span>页</span><input type="button" value="跳转" class="tz_btn" /></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div id="login2" style="margin-top:-80px; margin-left:-80px;">
+       <div class="login1"> 
+         <div class="bt"><h1>规则说明</h1><a href="javascript:hide2()"><img src="../images/close.png" /></a><div class="clear"></div></div>
+      
+       <div class="cj_nr">
+       <p>内容待填充，采用图文结合方式说明推广方法</p>
+       
+       
+       
+       </div>
+        </div>
+  </div>
+ <div id="over"></div>
+
+</body>
+</html>
+
+ <script type="text/javascript">
+ var login2=document.getElementById("login2");
+ var over=document.getElementById("over");
+	 function show2()
+     {
+        login2.style.display = "block";
+        over.style.display = "block";
+     }
+     function hide2()
+   {
+        login2.style.display = "none";
+        over.style.display = "none";
+    }
+	 </script>
+

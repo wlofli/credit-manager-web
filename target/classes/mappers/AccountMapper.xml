@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinyue.credit.dao.UserDao">
+	
+	<select id="getUserById" resultType="com.xinyue.credit.model.User">
+		select m.id id , m.real_name realName , m.sex sex,  m.tel_number telPhone ,
+		m.email email , m.birthday birthday , m.organization organization ,
+		m.good_business adept , m.location location , c.audit audit
+		from c_manager_info m 
+		left join c_certification_info c on m.id = c.userid 
+		left join m_organization_info o on m.organization = o.number 
+		where m.id = #{id} and m.deleted = 0 group by o.number 
+	</select>
+	
+	<update id="saveUser" parameterType="com.xinyue.credit.model.User">
+		update c_manager_info set real_name = #{realName} , sex = #{sex} , tel_number = #{telPhone} , 
+		email = #{email} , birthday = #{birthday} , organization = #{organization} , location=#{location} , good_business=#{adept}
+		where id = #{id}
+	</update>
+	
+	<select id="getCertById" resultType="com.xinyue.credit.model.User">
+		select c.id id , c.real_name realName , c.sex sex , s.select_value sexName,  c.idcard idcard , c.telphone telphone , 
+		c.organization organization , c.position position , c.province province , c.city city , concat_ws('',p.name , a.name) citys, 
+		c.address organizationAdressString , c.userid userid , c.audit audit ,c.card_img cardImgPath , c.work_img workImgPath ,c.half_img headImgPath 
+		from c_certification_info c 
+		left join m_select_info s on c.sex = s.select_key  
+		left join m_area_city a on a.code = c.city 
+		left join m_area_province p on p.code = c.province 
+		where c.deleted = 0 and s.type_code = 'sex' and c.userid = #{id} 
+	</select>
+	
+	<update id="updateCert" parameterType="com.xinyue.credit.model.User">
+		update c_certification_info set real_name=#{realName} , sex=#{sex} , idcard=#{idcard} , telphone=#{telPhone} , organization=#{organization} , 
+		position=#{position} , province=#{province} , city=#{city} , address=#{organizationAdressString} , audit = #{audit} 
+		where id = #{id} 
+	</update>
+	
+	<update id="updateAudit">
+		update c_certification_info set audit = 2
+		where id = #{id} 
+	</update>
+	
+	<update id="initAudit">
+		update c_certification_info set audit = 1
+		where id = #{id} 
+	</update>
+	
+	<update id="updateCertImg" parameterType="com.xinyue.credit.model.User">
+		update c_certification_info set card_img = #{cardImgPath} , 
+		work_img = #{workImgPath} , half_img = #{headImgPath}
+		where id = #{id} 
+	</update>
+	
+	<insert id="insertCert" parameterType="com.xinyue.credit.model.User">
+		insert into c_certification_info(real_name , sex , idcard, telphone , organization, position, province, city, address , userid) 
+		values (#{realName} , #{sex} , #{idcard} , #{telPhone} , #{organization} , #{position} , #{province} , #{city} , #{organizationAdressString} , #{userid})
+	</insert>
+</mapper>
