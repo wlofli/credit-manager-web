@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户过期</title>
+<script type="text/javascript">
+var time = 5;
+function timer(){
+	if (time == 0) {
+		document.location.href="/login/credit/page";
+	} else {
+	time = time - 1;
+	document.getElementById("time").innerHTML = time;
+	setTimeout(function(){timer()},1000);
+	}
+	
+}
+</script>
+</head>
+<body onload="timer()">
+<h1>未登陆或者用户过期，<span id="time"></span>秒后返回登陆界面>>>></h1>
+<h2><a href="/login/credit/page">立即返回</a></h2>
+</body>
+</html>
