@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinyue.credit.dao.MessageDao">
+	
+	<select id="findPageList" resultType="com.xinyue.credit.model.Message" parameterType="com.xinyue.credit.bean.MessageInfo">
+		select id , title , content , deleted , messageid , send_time sendTime ,  has_read hasRead from c_message_info 
+		where deleted = 0   
+		<if test="startTime != null and startTime != ''">
+		 and send_time>=#{startTime} 
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+			 and send_time<#{endTime}
+			]]>
+		</if>
+		<if test="hasRead != null and hasRead != ''">
+			and has_read = #{hasRead}
+		</if>
+		 limit #{start} , #{pageSize} 
+	</select>
+	
+	<select id="getCount" resultType="int" parameterType="com.xinyue.credit.bean.MessageInfo">
+		select count(id) from c_message_info 
+		where deleted = 0   
+		<if test="startTime != null and startTime != ''">
+		 and send_time>=#{startTime} 
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+			 and send_time<#{endTime}
+			]]>
+		</if>
+		<if test="hasRead != null and hasRead != ''">
+			and has_read = #{hasRead}
+		</if>
+	</select>
+	
+	<select id="getMessageById" resultType="com.xinyue.credit.model.Message">
+		select id , title , content , deleted , messageid , send_time sendTime ,  has_read hasRead from c_message_info 
+		where id = #{id}
+	</select>
+	
+	<update id="delMessage">
+		update c_message_info set deleted = 1 
+		where id = 
+		<foreach collection="list" index="index" item="item" separator=" or id = ">
+			#{item}
+		</foreach>
+	</update>
+	
+	<update id="updateReads">
+		update c_message_info set has_read = 1 
+		where id = 
+		<foreach collection="list" index="index" item="item" separator=" or id = ">
+			#{item}
+		</foreach>
+	</update>
+	
+	<select id="getReadById" resultType="com.xinyue.credit.model.Message" parameterType="com.xinyue.credit.bean.MessageInfo">
+		select id , title , content , deleted , messageid , send_time sendTime ,  has_read hasRead from c_message_info
+		where id = (
+			select max(id) from c_message_info where id <![CDATA[<]]> #{userid} and deleted = 0 
+			<if test="startTime != null and startTime != ''">
+			 and send_time>=#{startTime} 
+			</if>
+			<if test="endTime != null and endTime != ''">
+				<![CDATA[
+				 and send_time<#{endTime}
+				]]>
+			</if>
+			<if test="hasRead != null and hasRead != ''">
+				and has_read = #{hasRead}
+			</if>
+		) 
+		or id = #{userid} and deleted = 0 <if test="startTime != null and startTime != ''">
+		 and send_time>=#{startTime} 
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+			 and send_time<#{endTime}
+			]]>
+		</if>
+		<if test="hasRead != null and hasRead != ''">
+			and has_read = #{hasRead}
+		</if> 
+		or id = (select min(id) from c_message_info where id <![CDATA[>]]> #{userid} and deleted = 0 
+		<if test="startTime != null and startTime != ''">
+		 and send_time>=#{startTime} 
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+			 and send_time<#{endTime}
+			]]>
+		</if>
+		<if test="hasRead != null and hasRead != ''">
+			and has_read = #{hasRead}
+		</if>);
+	</select>
+</mapper>

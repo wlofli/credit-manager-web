@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="keywords" content="" />
+<meta http-equiv="description" content="" />
+<title>信贷经理-订单跟踪记录</title>
+<link rel="icon" href="../images/moke.ico" />
+<link href="../css/base.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" runat="server" src="../js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".left ul li #a").click(function(){ 
+		$(this).parent().find('.fnav').removeClass("menu_chioce");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('.fnav').slideToggle();
+		$(this).parent().find('.fnav').addClass("menu_chioce");
+	});
+})
+</script>
+<script>
+$(document).ready(function(){
+$(".gly").click(function(){
+    $(".zkcd").slideToggle("slow");
+  });
+});
+</script> 
+</head>
+
+<body>
+<div class="main">
+<div class="left">
+<ul>
+<li class="logo bj0"><Img src="../images/logo.png" onclick="window.open('')" /></li>
+<li class="bj0"><span>信贷经理中心</span></li>
+<li><a class="zy" id="a">我的主页</a>
+<ul class="fnav">
+<li><a href="index_xd.html">我的主页</a></li>
+</ul>
+</li>
+<li><a class="zh" id="a">账户管理</a>
+<ul class="fnav">
+<li><a href="grzl.html">个人中心</a></li>
+<li><a href="news.html">我的消息</a></li>
+<li><a href="tjhy.html">分享推荐会员</a></li>
+<li><a href="zjgl.html">资金管理</a></li>
+<li><a href="jfgl.html">积分管理</a></li>
+</ul>
+</li>
+<li><a class="cp" id="a">产品推广</a>
+<ul class="fnav">
+<li><a href="cptg.html">产品推广</a></li>
+</ul>
+</li>
+<li><a class="xx" id="a">信息查询</a>
+<ul class="fnav">
+<li><a href="xxcx.html">企业信息下载明细</a></li>
+<li><a href="xxcx1.html">人员信息下载明细</a></li>
+<li><a href="xxcx2.html">企业投资信息下载明细</a></li>
+</ul>
+</li>
+<li class="hit"><a class="kh" id="a">客户管理</a>
+<ul class="fnav">
+<li><a href="khgl.html" >推送客户</a></li>
+<li><a href="lqkh.html" >领取客户</a></li>
+<li><a href="yhpj.html" >客户评价</a></li>
+</ul>
+</li>
+<li><a class="hq" id="a">获取客户</a>
+<ul class="fnav">
+<li><a href="ljlq.html" >立即领取</a></li>
+<li><a href="jpkh.html" >竞拍客户</a></li>
+<li><a href="wydj.html" >唯一低价</a></li>
+<li><a href="wdcj.html" >我的出价</a></li>
+<li><a href="wdkh2.html" >我的客户</a></li>
+</ul>
+</li>
+<li><a class="wd" id="a">客户问答</a>
+<ul class="fnav">
+<li><a href="ptwd.html">平台问答</a></li>
+<li><a href="jgwd.html">机构问答</a></li>
+<li><a href="wdwd.html">我的问答</a></li>
+</ul>
+</li>
+<li><a class="al" id="a">成功案例</a>
+<ul class="fnav">
+<li><a href="cgal.html">成功案例</a></li>
+</ul>
+</li>
+<li><a class="bz" id="a">帮助中心</a>
+<ul class="fnav">
+<li><a href="bzzx.html">帮助中心</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="right">
+<div class="r1">
+<div class="r1_l">
+<a href="#" class="xl" title="新浪分享"></a>
+<a href="#" class="wx" title="微信分享"></a>
+<a href="#" class="qq" title="qq分享"></a>
+<div class="clear"></div>
+</div>
+<div class="r1_r">
+<a href="cptg.html" class="cp" title="新产品"><span>3</span></a>
+<a href="news.html" class="xx" title="新消息"><span>12</span></a>
+<a href="#" class="gly" title="">刘小小</a>
+<div class="zkcd"><a href="xgmm.html">修改密码</a><a href="login.html">退出</a></div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="grzl">
+<div class="grzx_bt">
+<span>订单跟踪记录</span>
+</div>
+<div class="grzx_nr"> 
+<div class="khwd_xq_nr">
+<div class="khwd_xq_nr_bt">
+<span>产品名称：<strong>税贷通</strong></span>
+<span>所属机构：<strong>工商银行杭州分行</strong></span>
+<span class="dd_zt">订单状态：<strong>订单跟踪中</strong></span>
+</div>
+<div class="khwd_xq_nr_cont">
+<div class="dd_xq_xx">
+<p>
+<span>贷款金额：100万元</span>
+<span>贷款期限：24个月</span>
+<span>贷款人姓名：林某某</span>
+<span>贷款人电话：18868142659</span>
+</p>
+<p>
+<span>借款单位：杭州摩科商用设备有限公司</span>
+<span>申贷时间：2015年6月24日</span>
+</p>
+<p class="hform">
+<span>订单状态：</span>
+<select class="ddzt_s1">
+<option selected="selected">订单跟进中</option>
+<option>放款成功</option>
+<option>放款失败</option>
+<option>无效电话</option>
+</select>
+</p>
+<p class="hform">
+<span>补充说明：</span>
+<textarea class="ddzt_t1" onfocus="if(this.value==defaultValue) {this.value='';this.type='password'}" onblur="if(!value) {value=defaultValue; this.type='text';}" >此处最多可输入100个文字</textarea>
+</p>
+<ul class="xzxx">
+<li><span class="bt">基本信息</span><a href="#" class="xz_btn">确认下载</a><span class="zs">下载需扣费10元</span><a href="#" class="xxsm">信息内容说明</a></li>
+<li><span class="bt">经营信息</span><a href="#" class="xz_btn">确认下载</a><span class="zs">下载需扣费30元</span><a href="#" class="xxsm">信息内容说明</a></li>
+<li><span class="bt">房产信息</span><a href="#" class="xz_btn">确认下载</a><span class="zs">下载需扣费50元</span><a href="#" class="xxsm">信息内容说明</a></li>
+</ul>
+</div>
+</div>
+</div> 
+<div class="news_nr"> 
+<table class="tjhy_table" cellpadding="0" cellspacing="0">
+<thead>
+<tr class="table_bt">
+<td colspan="4">订单跟踪明细</td>
+</tr>
+<tr>
+<td colspan="1">跟踪日期</td>
+<td colspan="1">订单状态</td>
+<td colspan="1">下载企业信息情况</td>
+<td colspan="1">状态描述</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="1">2015-06-15</td>
+<td colspan="1">订单跟进中</td>
+<td colspan="1">已下载基本信息</td>
+<td colspan="1"> </td>
+</tr>
+<tr>
+<td colspan="1">2015-06-15</td>
+<td colspan="1">订单跟进中</td>
+<td colspan="1">已下载基本信息</td>
+<td colspan="1"> </td>
+</tr>
+<tr>
+<td colspan="1">2015-06-15</td>
+<td colspan="1">订单跟进中</td>
+<td colspan="1">已下载基本信息</td>
+<td colspan="1"> </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</body>
+</html>
