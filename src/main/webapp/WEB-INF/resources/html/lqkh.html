@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="keywords" content="" />
+<meta http-equiv="description" content="" />
+<title>信贷经理-客户管理-领取客户</title>
+<link rel="icon" href="../images/moke.ico" />
+<link href="../css/base.css" type="text/css" rel="stylesheet" />
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript" runat="server"></script>
+<script src="../js/My97DatePicker.4.8/WdatePicker.js" type="text/javascript" runat="server"></script>
+<script type="text/javascript" runat="server" src="../js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".left ul li #a").click(function(){ 
+		$(this).parent().find('.fnav').removeClass("menu_chioce");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('.fnav').slideToggle();
+		$(this).parent().find('.fnav').addClass("menu_chioce");
+	});
+})
+</script>
+<script>
+$(document).ready(function(){
+$(".gly").click(function(){
+    $(".zkcd").slideToggle("slow");
+  });
+});
+</script> 
+
+</head>
+
+<body>
+<div class="main">
+<div class="left">
+<ul>
+<li class="logo bj0"><Img src="../images/logo.png" onclick="window.open('')" /></li>
+<li class="bj0"><span>信贷经理中心</span></li>
+<li><a class="zy" id="a">我的主页</a>
+<ul class="fnav">
+<li><a href="index_xd.html">我的主页</a></li>
+</ul>
+</li>
+<li><a class="zh" id="a">账户管理</a>
+<ul class="fnav">
+<li><a href="grzl.html">个人中心</a></li>
+<li><a href="news.html">我的消息</a></li>
+<li><a href="tjhy.html">分享推荐会员</a></li>
+<li><a href="zjgl.html">资金管理</a></li>
+<li><a href="jfgl.html">积分管理</a></li>
+</ul>
+</li>
+<li><a class="cp" id="a">产品推广</a>
+<ul class="fnav">
+<li><a href="cptg.html">产品推广</a></li>
+</ul>
+</li>
+<li><a class="xx" id="a">信息查询</a>
+<ul class="fnav">
+<li><a href="xxcx.html">企业信息下载明细</a></li>
+<li><a href="xxcx1.html">人员信息下载明细</a></li>
+<li><a href="xxcx2.html">企业投资信息下载明细</a></li>
+</ul>
+</li>
+<li class="hit"><a class="kh" id="a">客户管理</a>
+<ul class="fnav">
+<li><a href="khgl.html" >推送客户</a></li>
+<li class="hit"><a href="lqkh.html" >领取客户</a></li>
+<li><a href="yhpj.html" >客户评价</a></li>
+</ul>
+</li>
+<li><a class="hq" id="a">获取客户</a>
+<ul class="fnav">
+<li><a href="ljlq.html" >立即领取</a></li>
+<li><a href="jpkh.html" >竞拍客户</a></li>
+<li><a href="wydj.html" >唯一低价</a></li>
+<li><a href="wdcj.html" >我的出价</a></li>
+<li><a href="wdkh2.html" >我的客户</a></li>
+</ul>
+</li>
+<li><a class="wd" id="a">客户问答</a>
+<ul class="fnav">
+<li><a href="ptwd.html">平台问答</a></li>
+<li><a href="jgwd.html">机构问答</a></li>
+<li><a href="wdwd.html">我的问答</a></li>
+</ul>
+</li>
+<li><a class="al" id="a">成功案例</a>
+<ul class="fnav">
+<li><a href="cgal.html">成功案例</a></li>
+</ul>
+</li>
+<li><a class="bz" id="a">帮助中心</a>
+<ul class="fnav">
+<li><a href="bzzx.html">帮助中心</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div class="right">
+<div class="r1">
+<div class="r1_l">
+<a href="#" class="xl" title="新浪分享"></a>
+<a href="#" class="wx" title="微信分享"></a>
+<a href="#" class="qq" title="qq分享"></a>
+<div class="clear"></div>
+</div>
+<div class="r1_r">
+<a href="cptg.html" class="cp" title="新产品"><span>3</span></a>
+<a href="news.html" class="xx" title="新消息"><span>12</span></a>
+<a href="#" class="gly" title="">刘小小</a>
+<div class="zkcd"><a href="xgmm.html">修改密码</a><a href="login.html">退出</a></div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="grzl">
+<div class="grzx_bt">
+<span>领取客户</span><span class="khgl_zs">正确反馈订单信息，可以增加您的平台积分</span><a href="javascript:show2()">查看详情> </a>
+</div>
+<div class="khgl_top">
+<div class="khgl_top1">
+<span class="ss_bt">快速筛选：</span>
+<ul class="sxtj1">
+<li><a href="#">新订单<strong>3</strong></a></li>
+<li><a href="#">待跟客户<strong>3</strong></a></li>
+<li><a href="#">审批中<strong>3</strong></a></li>
+<li><a href="#">审批通过<strong>3</strong></a></li>
+<li><a href="#">放款成功<strong>3</strong></a></li>
+<li><a href="#">放款失败<strong>3</strong></a></li>
+<li><a href="#">无效电话<strong>3</strong></a></li>
+</ul>
+</div>
+<div class="khgl_top2">
+<span class="ss_bt">高级筛选：</span>
+<div class="gjsx">
+<span>申请日期：</span><input type="text" class="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" /><span class="datefgx">-</span><input type="text" class="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" /><span class="xzcp_bt">选择产品：</span><select class="xzcp_s1"><option>请选择</option></select>
+<span class="xzcp_bt">订单编号：</span><input type="text" class="ddbh" /><br /><span class="xzcp_bt1">客户电话：</span><input type="text" class="ddbh" /><span class="xzcp_bt">客户姓名：</span><input type="text" class="ddbh" /><input type="button" class="cx_btn" value="查 询" /> 
+</div>
+
+</div>
+</div>
+<div class="news_nr">
+<p>未能查找到您想要的结果，请确认您的搜索条件正确，或<a href="#">点此查看全部订单></a></p>
+</div>
+<div class="news_nr"> 
+<table class="tjhy_table" cellpadding="0" cellspacing="0">
+<thead>
+<tr>
+<td colspan="1">订单编号</td>
+<td colspan="1">申请人</td>
+<td colspan="2">产品名称</td>
+<td colspan="2">申请人电话</td>
+<td colspan="1">贷款额度<br />/万元</td>
+<td colspan="1">贷款期限<br />/月</td>
+<td colspan="2">贷款单位</td>
+<td colspan="2">申请时间</td>
+<td colspan="2">订单状态</td>
+<td colspan="2">操作</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="1">01</td>
+<td colspan="1">王某某</td>
+<td colspan="2">税贷通</td>
+<td colspan="2">18868146869</td>
+<td colspan="1">120</td>
+<td colspan="1">24</td>
+<td colspan="2">杭州摩科有限公司</td>
+<td colspan="2">2015-06-15</td>
+<td colspan="2">订单跟进中</td>
+<td colspan="2"><a href="ddgzjl.html" class="m_r_10">查看</a><a href="#">跟进</a></td>
+</tr>
+<tr>
+<td colspan="1">01</td>
+<td colspan="1">王某某</td>
+<td colspan="2">税贷通</td>
+<td colspan="2">18868146869</td>
+<td colspan="1">120</td>
+<td colspan="1">24</td>
+<td colspan="2">杭州摩科有限公司</td>
+<td colspan="2">2015-06-15</td>
+<td colspan="2">订单跟进中</td>
+<td colspan="2"><a href="ddgzjl.html" class="m_r_10">查看</a><a href="#">跟进</a></td>
+</tr>
+<tr>
+<td colspan="1">01</td>
+<td colspan="1">王某某</td>
+<td colspan="2">税贷通</td>
+<td colspan="2">18868146869</td>
+<td colspan="1">120</td>
+<td colspan="1">24</td>
+<td colspan="2">杭州摩科有限公司</td>
+<td colspan="2">2015-06-15</td>
+<td colspan="2">订单跟进中</td>
+<td colspan="2"><a href="ddgzjl.html" class="m_r_10">查看</a><a href="#">跟进</a></td>
+</tr>
+<tr>
+<td colspan="1">01</td>
+<td colspan="1">王某某</td>
+<td colspan="2">税贷通</td>
+<td colspan="2">18868146869</td>
+<td colspan="1">120</td>
+<td colspan="1">24</td>
+<td colspan="2">杭州摩科有限公司</td>
+<td colspan="2">2015-06-15</td>
+<td colspan="2">订单跟进中</td>
+<td colspan="2"><a href="ddgzjl.html" class="m_r_10">查看</a><a href="#">跟进</a></td>
+</tr>
+<tr>
+<td colspan="1">01</td>
+<td colspan="1">王某某</td>
+<td colspan="2">税贷通</td>
+<td colspan="2">18868146869</td>
+<td colspan="1">120</td>
+<td colspan="1">24</td>
+<td colspan="2">杭州摩科有限公司</td>
+<td colspan="2">2015-06-15</td>
+<td colspan="2">订单跟进中</td>
+<td colspan="2"><a href="ddgzjl.html" class="m_r_10">查看</a><a href="#">跟进</a></td>
+</tr>
+<tr>
+<td colspan="1">01</td>
+<td colspan="1">王某某</td>
+<td colspan="2">税贷通</td>
+<td colspan="2">18868146869</td>
+<td colspan="1">120</td>
+<td colspan="1">24</td>
+<td colspan="2">杭州摩科有限公司</td>
+<td colspan="2">2015-06-15</td>
+<td colspan="2">订单跟进中</td>
+<td colspan="2"><a href="ddgzjl.html" class="m_r_10">查看</a><a href="#">跟进</a></td>
+</tr>
+<tr>
+<td colspan="1">01</td>
+<td colspan="1">王某某</td>
+<td colspan="2">税贷通</td>
+<td colspan="2">18868146869</td>
+<td colspan="1">120</td>
+<td colspan="1">24</td>
+<td colspan="2">杭州摩科有限公司</td>
+<td colspan="2">2015-06-15</td>
+<td colspan="2">订单跟进中</td>
+<td colspan="2"><a href="ddgzjl.html" class="m_r_10">查看</a><a href="#">跟进</a></td>
+</tr>
+
+
+</tbody>
+</table>
+</div>
+<div class="page">
+<ul>
+<li><span>共323条记录</span></li>
+<li><span>1/7页</span></li>
+<li><a href="#">下一页</a></li>
+<li class="tz_li"><span>跳转到第</span><input type="text" class="ymsr" /><span>页</span><input type="button" value="跳转" class="tz_btn" /></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div id="login2" style="margin-top:-80px; margin-left:-80px;">
+       <div class="login1"> 
+         <div class="bt"><h1>积分说明</h1><a href="javascript:hide2()"><img src="../images/close.png" /></a><div class="clear"></div></div>
+      
+       <div class="cj_nr">
+       <p>内容待填充，采用图文结合方式说明推广方法</p>
+       
+       
+       
+       </div>
+        </div>
+  </div>
+ <div id="over"></div>
+
+</body>
+</html>
+
+ <script type="text/javascript">
+ var login2=document.getElementById("login2");
+ var over=document.getElementById("over");
+	 function show2()
+     {
+        login2.style.display = "block";
+        over.style.display = "block";
+     }
+     function hide2()
+   {
+        login2.style.display = "none";
+        over.style.display = "none";
+    }
+	 </script>
+
