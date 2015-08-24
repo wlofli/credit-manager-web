@@ -126,16 +126,16 @@ function creditLogin(){
 	
 	var checkCode = $("#checkCode").val();
 	if ($("#loginForm").valid()) {
-		$.ajax({
-			url:"${ctx}/login/check/code?checkCode="+checkCode,
-			type:"post",
-			success:function(data){
-				if (data == "false") {
-					alert("验证码不正确！");
-					return;
-				}
-			}
-		});
+// 		$.ajax({
+// 			url:"${ctx}/login/check/code?checkCode="+checkCode,
+// 			type:"post",
+// 			success:function(data){
+// 				if (data == "false") {
+// 					alert("验证码不正确！");
+// 					return;
+// 				}
+// 			}
+// 		});
 		$("#loginForm").submit();
 	}
 }

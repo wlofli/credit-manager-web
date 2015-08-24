@@ -37,8 +37,9 @@
 			</ul></li>
 		<li><a class="hq" id="a">获取客户</a>
 			<ul class="fnav">
-				<li><a href="#">立即领取</a></li>
-				<li><a href="#">竞拍客户</a></li>
+				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/order/appointlist'">推送客户</a></li>
+				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/order/fixlist'">立即领取</a></li>
+				<li><a href="javascript:void(0)" >竞拍客户</a></li>
 				<li><a href="#">唯一低价</a></li>
 				<li><a href="#">我的出价</a></li>
 				<li><a href="#">我的客户</a></li>

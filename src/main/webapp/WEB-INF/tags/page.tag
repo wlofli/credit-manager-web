@@ -46,7 +46,7 @@
 		
 		<li>
 			<c:choose>
-				<c:when test="${pageData.currentPage == PageData.totalPage }">
+				<c:when test="${pageData.currentPage == pageData.totalPage }">
 					<a href="javascript:void(0)">未页</a>
 				</c:when>
 				<c:otherwise>

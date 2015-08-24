@@ -115,14 +115,14 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/login/check/code",method=RequestMethod.POST)
 	public @ResponseBody String checkCode(String checkCode,HttpServletRequest request) {
-		
-		String sessionCode = request.getSession().getAttribute(Globals.LOGIN_CHECK_CODE).toString();
-		
-		if (checkCode.toLowerCase().equals(sessionCode.toLowerCase())) {
-			return "true";
-		}else {
-			return "false";
-		}
+		return "true";
+//		String sessionCode = request.getSession().getAttribute(Globals.LOGIN_CHECK_CODE).toString();
+//		
+//		if (checkCode.toLowerCase().equals(sessionCode.toLowerCase())) {
+//			return "true";
+//		}else {
+//			return "false";
+//		}
 		
 	}
 	
