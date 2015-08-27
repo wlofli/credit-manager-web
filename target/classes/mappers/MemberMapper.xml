@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinyue.credit.dao.RecommendMemberDao">
+		
+	<select id="getYaoqm" resultType="string">
+		select invitation_code from c_manager_info where id = #{id}
+	</select>	
+		
+	<select id="getRecommendMember" resultType="com.xinyue.credit.bean.RecommendMember">
+		select count(*) ordinaryNum , sum(l.score) ordinaryScore 
+		from c_manager_info i inner join c_credit_member l on i.id = l.presenter 
+		where i.invitation_code = #{code};
+	</select>
+	
+	
+	<select id="getRecommendCredit" resultType="com.xinyue.credit.bean.RecommendCredit">
+		select count(*) creditNum , sum(c.score) creditScore from c_manager_info m 
+		inner join c_credit_credit c on m.id = c.presentee where m.invited_code = #{code}
+	</select>
+</mapper>

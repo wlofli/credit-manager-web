@@ -16,27 +16,33 @@
 		insert into 
 			c_manager_info
 		(
+			id,
 			tel_number,
 			login_password,
 			real_name,
 			organization,
-			location,
+			province,
+			city,
 			login_type,
 			ip_address,
 			invitation_code,
+			invited_code,
 			head_img_path,
 			last_login_time,
 			created_time
 		)
 		values(
+			#{id},
 			#{telPhone},
 			#{password},
 			#{realName},
 			#{organization},
-			#{location},
+			#{province},
+			#{city},
 			0,
 			'',
 			#{invitationCode},
+			#{invited},
 			'',
 			now(),
 			now()

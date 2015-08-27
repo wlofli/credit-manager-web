@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xinyue.credit.model.PageData;
 import com.xinyue.credit.model.User;
 import com.xinyue.credit.util.Globals;
-import com.xinyue.manage.beans.PageInfo;
 import com.xinyue.manage.beans.SearchCustomer;
+import com.xinyue.manage.beans.SearchOrderCredit;
 import com.xinyue.manage.beans.SelectInfo;
 import com.xinyue.manage.model.OrderAppointed;
 import com.xinyue.manage.model.OrderFixed;
@@ -26,7 +26,6 @@ import com.xinyue.manage.service.OrderCustomerService;
 import com.xinyue.manage.service.OrderService;
 import com.xinyue.manage.service.ProductService;
 import com.xinyue.manage.service.SelectService;
-import com.xinyue.manage.util.CommonFunction;
 import com.xinyue.manage.util.GlobalConstant;
 
 /**
@@ -68,15 +67,17 @@ public class OrderController {
 	@RequestMapping("appointlist")
 	public String appointList(@RequestParam(defaultValue="1")int topage, @ModelAttribute("searchCustomer")SearchCustomer searchCustomer,
 			Model model, HttpSession session){
-System.out.println(searchCustomer);
-System.out.println(searchCustomer.getStartTime());
-System.out.println(searchCustomer.getEndTime());
-System.out.println(searchCustomer.getTwoYearCredit());
 		User user = (User)session.getAttribute(Globals.SESSION_USER_INFO);
 		List<OrderAppointed> orderAppointeds = orderCustomerService.getOrderAppointedByPage(searchCustomer, (topage - 1) *GlobalConstant.PAGE_SIZE, 
 				GlobalConstant.PAGE_SIZE, user.getId());
 		
-		//undone ->productList
+		List<SelectInfo> productList = selectService.getProductList();
+		model.addAttribute("productList", productList);
+		
+		
+		List<SearchOrderCredit> orderStatusList = orderCustomerService
+				.getSearchOrderCreditList(GlobalConstant.ORDER_STATUS, GlobalConstant.ORDER_CONDITION);
+		model.addAttribute("orderStatusList", orderStatusList);
 		int countAll = orderCustomerService.countOrderAppointedByPage(searchCustomer, user.getId());
 		PageData<OrderAppointed> page = new PageData<OrderAppointed>(orderAppointeds, countAll, topage);
 		model.addAttribute("page", page);

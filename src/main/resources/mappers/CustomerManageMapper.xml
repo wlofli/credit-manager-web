@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinyue.credit.dao.CustomerManageDAO">
+	<select id="getEvaluationsCountByManagerId" parameterType="String" resultType="int">
+		select 
+		    count(oi.id)
+		from
+		    c_manager_info mi,
+		    m_order_info oi
+		where
+		    mi.id = oi.credit_manager_id;
+	</select>
+	
+	<select id="getEvaluationsOrderByStar" parameterType="hashmap" resultType="com.xinyue.credit.model.CustomerEvaluation">
+		select 
+		    oi.code as orderId,
+		    oi.name as productName,
+		    oi.member_id as applicant,
+		    date_format(oi.evaluation_time, '%Y-%m-%d') as evaluationTime,
+		    oi.level as starLevel
+		from
+		    c_manager_info mi,
+		    m_order_info oi
+		where
+		    mi.id = oi.credit_manager_id
+		    <if test="star!=0">
+		    and oi.level = #{star}
+		    </if>
+		order by oi.oi.evaluation_time desc
+		limit #{index} , 10;	
+	</select>
+</mapper>

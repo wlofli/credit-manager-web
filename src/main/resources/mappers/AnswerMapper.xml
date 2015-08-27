@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinyue.credit.dao.AnswerDao">
+		
+	<select id="getMyAnswer" resultType="com.xinyue.credit.bean.QuestionBean">
+		select max(case when status = 1 then num else 0 end) as verify ,
+		max(case when status = 2 then num else 0 end) as pass ,
+		max(case when status = 3 then num else 0 end) as fail ,
+		sum(case when status is not null then num else 0 end) as total 
+		from (select status ,count(status) num from m_answer_info where created_id = #{createid} and deleted=0 group by status order by null) t
+	</select>
+	
+	<select id="getRecentlyAnswer" resultType="com.xinyue.credit.bean.QuestionBean">
+		select distinct(select count(*) from m_answer_info where created_time>=curdate() and deleted=0) as totay ,  
+		(select count(*) from m_answer_info where created_time>=date_sub(curdate(),interval 1 day) and created_time<![CDATA[<]]>curdate() and deleted=0) as yesterday  ,
+		(select count(*)+1 from m_answer_info where created_time>=curdate() and created_time<![CDATA[<]]>t.created_time and deleted=0) as rank 
+		from m_answer_info t where t.created_id = #{createid} and created_time>=curdate() and deleted=0 order by id limit 0 , 1 
+	</select>
+	
+	<select id="findXAbsenceAnswer" resultType="com.xinyue.credit.model.Question">
+		select id, created_time createtime , title , content , questioner_type questType 
+		from m_question_info q 
+		where not exists (select * from m_answer_info where question_id = q.id and deleted=0) 
+		and q.type_id = 1 and deleted=0  
+		limit #{start} , #{pageSize}
+	</select>
+	<select id="getXAbsenceAnswerCount" resultType="int">
+		select count(*) 
+		from m_question_info q 
+		where not exists (select * from m_answer_info where question_id = q.id and deleted=0) 
+		and q.type_id = 1 and deleted=0 
+	</select>
+	
+	
+	
+	<select id="findXPossAnswer" resultType="com.xinyue.credit.model.Question">
+		select q.id id , q.created_time createtime , q.title , q.content , q.questioner_type questType , count(*) answerNum
+		from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
+		where q.type_id = 1 and a.deleted = 0 and q.deleted = 0 
+		limit #{start} , #{pageSize}
+	</select>
+	<select id="getXPossAnswerCount" resultType="int">
+		select count(distinct q.id)
+		from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
+		where q.type_id = 1 and a.deleted = 0 and q.deleted = 0 
+	</select>
+	
+	
+	<insert id="addAnswer" parameterType="com.xinyue.credit.model.Answer">
+		insert into m_answer_info(created_time , content , modified_time , status ,  question_id , answer_type , created_id , modified_id , deleted)
+		values(now() , #{acontent} , now() , 1 , #{questid} , 'c' , #{createid} , #{createid} , 0)
+	</insert>
+	
+	
+	<select id="findJAbsenceAnswer" resultType="com.xinyue.credit.model.Question">
+		select id, created_time createtime , title , content , questioner_type questType 
+		from m_question_info q 
+		where not exists (select * from m_answer_info where question_id = q.id and deleted=0) 
+		and q.type_id = 2 and deleted=0 
+		limit #{start} , #{pageSize}
+	</select>
+	<select id="getJAbsenceAnswerCount" resultType="int">
+		select count(*) 
+		from m_question_info q 
+		where not exists (select * from m_answer_info where question_id = q.id and deleted=0) 
+		and q.type_id = 2  and deleted=0
+	</select>
+	
+	
+	<select id="findJPossAnswer" resultType="com.xinyue.credit.model.Question">
+		select distinct q.id id , q.created_time createtime , q.title , q.content , q.questioner_type questType , count(*) answerNum 
+		from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
+		where q.type_id = 2 and a.deleted = 0 and q.deleted = 0 
+		limit #{start} , #{pageSize}
+	</select>
+	<select id="getJPossAnswerCount" resultType="int">
+		select count(*) from m_question_info q inner join m_answer_info a on q.id = a.question_id 
+		where q.type_id = 2 and a.deleted = 0 and q.deleted = 0 
+	</select>
+	
+	
+	<select id="findJPassAnswer" resultType="com.xinyue.credit.model.Question">
+		select distinct q.id id , q.created_time createtime , q.title , q.content , q.questioner_type questType , count(*) answerNum 
+		from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
+		where q.type_id = 2 and a.deleted = 0 and q.deleted = 0 and q.status = 2 
+		limit #{start} , #{pageSize}
+	</select>
+	<select id="getJPassAnswerCount" resultType="int">
+		select count(*) from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
+		where q.type_id = 2 and a.deleted = 0 and q.deleted = 0 and q.status = 2
+	</select>
+	
+	<select id="findMyAnswer" resultType="com.xinyue.credit.model.Question">
+		select q.id id , q.created_time createtime,  q.content content ,q.title title, a.content answerContent  , a.created_time answerCreatetime
+		from m_question_info q inner join m_answer_info a on q.id = a.question_id 
+		where a.created_id =#{createid} and a.deleted = 0 and q.deleted = 0 
+ 		limit #{start} , #{pageSize}
+	</select>
+	<select id="findMyAnswerCount" resultType="int">
+		select count(*) from m_question_info q inner join m_answer_info a on q.id = a.question_id 
+		where a.created_id =#{createid} and a.deleted = 0 and q.deleted = 0 
+	</select>
+	
+	<select id="showAnswer" resultType="com.xinyue.credit.bean.ShowAnswer">
+		select q.id id , q.title title , q.content content , q.questioner_type qtype , concat('' , p.name , c.name) address , q.created_time qtime , 
+		a.content acontent , a.created_time atime , a.created_id  acreater, m.contact_name mcreateName, i.real_name ccreateName, a.answer_type atype , o.name oname  
+		from m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id 
+		left join m_area_province p on p.code = q.province_id 
+		left join m_area_city c on c.code = q.city_id 
+		left join m_member_info m on m.id = a.created_id 
+		left join c_manager_info i on i.id = a.created_id 
+		left join m_organization_info o on o.number = q.org_id 
+		where q.id = #{questid} and q.deleted =0 and a.deleted = 0 
+		limit #{start} , #{pageSize}
+	</select>
+	
+	<select id="getShowAnswerCount" resultType="int">
+		select count(*) from m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id 
+		left join m_area_province p on p.code = q.province_id 
+		left join m_area_city c on c.code = q.city_id 
+		left join m_member_info m on m.id = a.created_id 
+		left join c_manager_info i on i.id = a.created_id 
+		left join m_organization_info o on o.number = q.org_id 
+		where q.id = #{questid} and q.deleted =0 and a.deleted = 0 
+	</select>
+	
+	
+	<select id="showZeroAnswer" resultType="com.xinyue.credit.bean.ShowAnswer">
+		select q.id id , q.title title , q.content content , q.questioner_type qtype , concat('' , p.name , c.name) address , q.created_time qtime 
+		from m_question_info q  
+		left join m_area_province p on p.code = q.province_id 
+		left join m_area_city c on c.code = q.city_id 
+		left join m_organization_info o on o.number = q.org_id 
+		where q.id = '2' and q.deleted =0 
+	</select>
+</mapper>

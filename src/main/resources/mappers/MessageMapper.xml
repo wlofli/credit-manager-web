@@ -4,7 +4,7 @@
 	
 	<select id="findPageList" resultType="com.xinyue.credit.model.Message" parameterType="com.xinyue.credit.bean.MessageInfo">
 		select id , title , content , deleted , messageid , send_time sendTime ,  has_read hasRead from c_message_info 
-		where deleted = 0   
+		where deleted = 0 and messageid = #{userid} 
 		<if test="startTime != null and startTime != ''">
 		 and send_time>=#{startTime} 
 		</if>
@@ -14,14 +14,14 @@
 			]]>
 		</if>
 		<if test="hasRead != null and hasRead != ''">
-			and has_read = #{hasRead}
+			and has_read = #{hasRead} 
 		</if>
 		 limit #{start} , #{pageSize} 
 	</select>
 	
 	<select id="getCount" resultType="int" parameterType="com.xinyue.credit.bean.MessageInfo">
 		select count(id) from c_message_info 
-		where deleted = 0   
+		where deleted = 0 and messageid = #{userid}    
 		<if test="startTime != null and startTime != ''">
 		 and send_time>=#{startTime} 
 		</if>

@@ -3,19 +3,34 @@
 <mapper namespace="com.xinyue.credit.dao.UserDao">
 	
 	<select id="getUserById" resultType="com.xinyue.credit.model.User">
-		select m.id id , m.real_name realName , m.sex sex,  m.tel_number telPhone ,
-		m.email email , m.birthday birthday , m.organization organization ,
-		m.good_business adept , m.location location , c.audit audit
-		from c_manager_info m 
-		left join c_certification_info c on m.id = c.userid 
-		left join m_organization_info o on m.organization = o.number 
-		where m.id = #{id} and m.deleted = 0 group by o.number 
+		select 
+		    m.id id,
+		    m.real_name realName,
+		    m.sex sex,
+		    m.tel_number telPhone,
+		    m.email email,
+		    m.birthday birthday,
+		    m.organization organization,
+		    m.good_business adept,
+		    m.province province,
+		    m.city city,
+		    c.audit audit
+		from
+		    c_manager_info m
+		        left join
+		    c_certification_info c ON m.id = c.userid
+		        left join
+		    m_organization_info o ON m.organization = o.number
+		where
+		    m.id = #{id} and m.deleted = 0
+		group by o.number; 
 	</select>
 	
 	<update id="saveUser" parameterType="com.xinyue.credit.model.User">
 		update c_manager_info set real_name = #{realName} , sex = #{sex} , tel_number = #{telPhone} , 
-		email = #{email} , birthday = #{birthday} , organization = #{organization} , location=#{location} , good_business=#{adept}
-		where id = #{id}
+		email = #{email} , birthday = #{birthday} , organization = #{organization} , province=#{province},
+		city=#{city} , good_business=#{adept}
+		where id = #{id};
 	</update>
 	
 	<select id="getCertById" resultType="com.xinyue.credit.model.User">

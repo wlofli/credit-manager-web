@@ -13,14 +13,7 @@
 <link rel="icon" href="../images/moke.ico" />
 <%@include file="../../commons/common.jsp" %>
 <script type="text/javascript">
-$(function(){
-	$(".left ul li #a").click(function(){ 
-		$(this).parent().find('.fnav').removeClass("menu_chioce");
-		$(".menu_chioce").slideUp(); 
-		$(this).parent().find('.fnav').slideToggle();
-		$(this).parent().find('.fnav').addClass("menu_chioce");
-	});
-})
+
 </script>
 <script>
 $(document).ready(function(){
@@ -36,11 +29,20 @@ function changePage(url , topage){
 		return;
 	}
 	var uri = url+topage;
-	document.location.href=uri;
+	$("#searchForm").attr("action",uri);
+	$("#searchForm").submit();
+// 	document.location.href=uri;
+}
+
+function fastsearch(n){
+	$("#status").val(n);
+	window.location.href='${ctx }/order/appointlist?status=' + n;
 }
 
 
-function submit(){
+function sub(){
+	$("#status").attr("value","");
+// 	alert("ok")
 	$("#searchForm").submit();
 }
 </script> 
@@ -80,31 +82,35 @@ function submit(){
 <div class="khgl_top1">
 <span class="ss_bt">快速筛选：</span>
 <ul class="sxtj1">
-<li><a href="#">等待机构审核<strong>3</strong></a></li>
-<li><a href="#">机构审核中<strong>3</strong></a></li>
-<li><a href="#">机构审核通过<strong>3</strong></a></li>
-<li><a href="#">机构审核不通过<strong>3</strong></a></li>
-<li><a href="#">放款成功<strong>3</strong></a></li>
-<li><a href="#">放款失败<strong>3</strong></a></li>
+<c:forEach items="${orderStatusList }" var="list">
+<li><a href="javascript:fastsearch('${list.key }')">${list.value }<strong>${list.num }</strong></a></li>
+</c:forEach>
+
 </ul>
 </div>
 <div class="khgl_top2">
 <span class="ss_bt">高级筛选：</span>
 <div class="gjsx">
 <sf:form action="${ctx }/order/appointlist" method="post" commandName="searchCustomer" id="searchForm">
+<sf:hidden path="status"/>
 <span>申请日期：</span>
+
 <sf:input path="startTime" cssClass="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
 <span class="datefgx">-</span>
 <sf:input path="endTime" cssClass="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
 
-<span class="xzcp_bt">选择产品：</span><select class="xzcp_s1"><option>请选择</option></select>
+<span class="xzcp_bt">选择产品：</span>
+	<sf:select path="product" cssClass="xzcp_s1">
+		<sf:option value="">请选择</sf:option>
+		<sf:options items="${productList }" itemLabel="value" itemValue="key"/>
+	</sf:select>
 <span class="xzcp_bt">订单编号：</span>
 <sf:input path="code" cssClass="ddbh"/>
 <br /><span class="xzcp_bt1">客户电话：</span>
 <sf:input path="applicantPhone" cssClass="ddbh"/>
 <span class="xzcp_bt">客户姓名：</span>
 <sf:input path="applicantName" cssClass="ddbh"/>
-<input type="button" class="cx_btn" value="查 询" onclick="submit()"/>
+<input type="button" class="cx_btn" value="查 询" onclick="sub()"/>
 </sf:form>
 </div>
 

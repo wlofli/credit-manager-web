@@ -34,7 +34,8 @@ function changePage(url , topage){
 		return;
 	}
 	var uri = url+topage;
-	document.location.href=uri;
+	$("#searchForm").attr("action",uri);
+	$("#searchForm").submit();
 }
 
 </script> 
@@ -123,6 +124,7 @@ function buyfixed(fixId){
 <div class="ljlq_bt">共有<strong>${page.total }</strong>条结果</div>
 <div class="ljlq">
 <ul>
+
 <c:forEach items="${page.data }" var="list" varStatus="vs" > 
 <li class=<c:if test="${vs.count % 2 == 0 }">bj_none</c:if>>
 <div class="lq_left">
@@ -147,7 +149,9 @@ function buyfixed(fixId){
 <span>企业年增值税：${list.totalVat }万元</span> 
 <a href="javascript:show1('${list.price }','${list.id }')" class="ckkhxq_btn">立即购买</a>
 </div>
+<div class="clear"></div>
 </div>
+<div class="clear"></div>
 </li>
 </c:forEach>
 </ul>
