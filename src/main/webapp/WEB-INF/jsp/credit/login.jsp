@@ -80,7 +80,7 @@
 					<s:input path="telPhone" class="l_yhm required" placeholder="请输入手机号" />
 				</div>
 				<div class="wbk">
-					<s:input path="password" class="l_mm required" placeholder="请输入密码" />
+					<s:password path="password" class="l_mm required" placeholder="请输入密码" />
 				</div>
 				<div class="yzm">
 					<span>验证码:</span><input id="checkCode" value="" class="y" name="checkC" />
@@ -108,36 +108,37 @@
 	</div>
 </div>
 <script type="text/javascript">
-$(function(){
-	$("#loginForm").validate({
-		rules:{
-			checkC:"required"
-		},
-		messages: {
-			checkC:"<span class='zc_zs'>* 请输入验证码</span>"
-		},
-		errorPlacement: function(error, element) {
-			error.appendTo(element.parent());
-		},
-	});
-});
+// $(function(){
+// 	$("#loginForm").validate({
+// 		rules:{
+// 			checkC:{
+// 				required:true,
+// 				remote:{
+//                     type: "post",
+//                     url:"${ctx}/login/check/code",
+//                     data:{
+//                     	checkCode: function(){return $("#checkCode").val();}
+//                     }
+// 				}
+// 			}
+// 		},
+// 		messages: {
+// 			checkC:{
+// 				required:"<span class='zc_zs'>* 请输入验证码</span>",
+// 				remote:"<span class='zc_zs'>* 手机验证码错误</span>"
+// 			}
+// 		},
+// 		errorPlacement: function(error, element) {
+// 			error.appendTo(element.parent());
+// 		},
+// 	});
+// });
 
 function creditLogin(){
 	
-	var checkCode = $("#checkCode").val();
-	if ($("#loginForm").valid()) {
-// 		$.ajax({
-// 			url:"${ctx}/login/check/code?checkCode="+checkCode,
-// 			type:"post",
-// 			success:function(data){
-// 				if (data == "false") {
-// 					alert("验证码不正确！");
-// 					return;
-// 				}
-// 			}
-// 		});
+// 	if ($("#loginForm").valid()) {
 		$("#loginForm").submit();
-	}
+// 	}
 }
 
 	

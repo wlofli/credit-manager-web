@@ -94,4 +94,8 @@ public class SecurityUtils {
 		
 		return result;
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(makeMD5("12212"));
+	}
 }

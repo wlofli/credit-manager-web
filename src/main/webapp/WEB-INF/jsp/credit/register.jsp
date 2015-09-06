@@ -79,6 +79,7 @@
 				<div class="zc_wbk">
 					<span class="zc_bt">手机号:</span>
 					<s:input path="telPhone" class="text required digits" id="tel"/>
+					<s:hidden path="invited"/>
 				</div>
 				<div class="zc_wbk">
 					<span class="zc_bt">登录密码:</span>
@@ -143,10 +144,22 @@ $(function(){
 				equalTo:"#password"
 			},
 			city:"required",
-			checkCode:"required"
+			checkCode:{
+				required:true,
+				remote:{
+                    type: "post",
+                    url:"${ctx}/register/check/code",
+                    data:{
+                    	checkCode: function(){return $("#checkCode").val();}
+                    }
+				}
+			}
 		},
 		messages: {
-			city:"<span class='zc_zs'>* 请选择所在地区</span>"
+			city:"<span class='zc_zs'>* 请选择所在地区</span>",
+			checkCode:{
+				remote:"<span class='zc_zs'>* 手机验证码错误</span>"
+			}
 		},
 		errorPlacement: function(error, element) {
 			error.appendTo(element.parent());
@@ -155,20 +168,8 @@ $(function(){
 });
 
 function register(){
-	var checkCode = $("#checkCode").val();
 	if ($("#registerForm").valid()) {
-		$.ajax({
-			url:"${ctx}/register/check/code?checkCode="+checkCode,
-			type:"post",
-			success:function(data){
-				if (data == "false") {
-					alert("验证码不正确！");
-					return;
-				}else{
-					$("#registerForm").submit();
-				}
-			}
-		});
+		$("#registerForm").submit();
 	}
 }	
 

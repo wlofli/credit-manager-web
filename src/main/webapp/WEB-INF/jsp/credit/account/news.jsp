@@ -80,7 +80,7 @@ $(function(){
 						</div>
 					</s:form>
 					<p:page url="${ctx }/credit/messagectr/show" pageData="${mpage}"></p:page>
-
+					<input type="hidden" value="${mpage.totalPage }" id="new_totalPage">
 				</div>
 
 			</div>
@@ -192,7 +192,19 @@ $(function(){
 			$("#credit_mesage_form").submit();
 		}
 		
-		
+		function changePage(url , topage){
+			var totalpage = $("#new_totalPage").val();
+			if(topage<0){
+				alert("所写页码需大于0");
+				return;
+			}
+			if(topage>totalpage){
+				alert("所写页码大于总页码了, 当前总页码为"+totalpage);
+				return;
+			}
+			$("#credit_message_topage").val(topage);
+			show(2);
+		}
 	</script>
 </body>
 </html>

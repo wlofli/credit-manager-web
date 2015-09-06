@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.xinyue.credit.bean.MessageInfo;
 import com.xinyue.credit.model.Message;
-import com.xinyue.credit.model.PageData;
+import com.xinyue.manage.beans.PageData;
 
 /**
  * 

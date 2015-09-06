@@ -17,7 +17,7 @@
 		from m_answer_info t where t.created_id = #{createid} and created_time>=curdate() and deleted=0 order by id limit 0 , 1 
 	</select>
 	
-	<select id="findXAbsenceAnswer" resultType="com.xinyue.credit.model.Question">
+	<select id="findXAbsenceAnswer" resultType="com.xinyue.manage.model.Question">
 		select id, created_time createtime , title , content , questioner_type questType 
 		from m_question_info q 
 		where not exists (select * from m_answer_info where question_id = q.id and deleted=0) 
@@ -33,26 +33,28 @@
 	
 	
 	
-	<select id="findXPossAnswer" resultType="com.xinyue.credit.model.Question">
+	<select id="findXPossAnswer" resultType="com.xinyue.manage.model.Question">
 		select q.id id , q.created_time createtime , q.title , q.content , q.questioner_type questType , count(*) answerNum
-		from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
-		where q.type_id = 1 and a.deleted = 0 and q.deleted = 0 
+		from  m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id  and a.deleted = 0
+		where q.type_id = 1 and q.deleted = 0 
 		limit #{start} , #{pageSize}
 	</select>
 	<select id="getXPossAnswerCount" resultType="int">
 		select count(distinct q.id)
-		from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
-		where q.type_id = 1 and a.deleted = 0 and q.deleted = 0 
+		from  m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id and a.deleted = 0
+		where q.type_id = 1 and q.deleted = 0 
 	</select>
 	
 	
-	<insert id="addAnswer" parameterType="com.xinyue.credit.model.Answer">
+	<insert id="addAnswer" parameterType="com.xinyue.manage.model.Answer">
 		insert into m_answer_info(created_time , content , modified_time , status ,  question_id , answer_type , created_id , modified_id , deleted)
-		values(now() , #{acontent} , now() , 1 , #{questid} , 'c' , #{createid} , #{createid} , 0)
+		values(now() , #{acontent} , now() , 1 , #{questid} , #{type} , #{createid} , #{createid} , 0)
 	</insert>
 	
 	
-	<select id="findJAbsenceAnswer" resultType="com.xinyue.credit.model.Question">
+	<select id="findJAbsenceAnswer" resultType="com.xinyue.manage.model.Question">
 		select id, created_time createtime , title , content , questioner_type questType 
 		from m_question_info q 
 		where not exists (select * from m_answer_info where question_id = q.id and deleted=0) 
@@ -67,72 +69,78 @@
 	</select>
 	
 	
-	<select id="findJPossAnswer" resultType="com.xinyue.credit.model.Question">
+	<select id="findJPossAnswer" resultType="com.xinyue.manage.model.Question">
 		select distinct q.id id , q.created_time createtime , q.title , q.content , q.questioner_type questType , count(*) answerNum 
-		from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
-		where q.type_id = 2 and a.deleted = 0 and q.deleted = 0 
+		from  m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id and a.deleted = 0 
+		where q.type_id = 2 and q.deleted = 0 
 		limit #{start} , #{pageSize}
 	</select>
 	<select id="getJPossAnswerCount" resultType="int">
-		select count(*) from m_question_info q inner join m_answer_info a on q.id = a.question_id 
-		where q.type_id = 2 and a.deleted = 0 and q.deleted = 0 
+		select count(*) from m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id and a.deleted = 0 
+		where q.type_id = 2 and q.deleted = 0 
 	</select>
 	
 	
-	<select id="findJPassAnswer" resultType="com.xinyue.credit.model.Question">
+	<select id="findJPassAnswer" resultType="com.xinyue.manage.model.Question">
 		select distinct q.id id , q.created_time createtime , q.title , q.content , q.questioner_type questType , count(*) answerNum 
-		from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
-		where q.type_id = 2 and a.deleted = 0 and q.deleted = 0 and q.status = 2 
+		from  m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id and a.deleted = 0 
+		where q.type_id = 2 and q.deleted = 0 and q.status = 2 
 		limit #{start} , #{pageSize}
 	</select>
 	<select id="getJPassAnswerCount" resultType="int">
-		select count(*) from  m_question_info q inner join m_answer_info a on q.id = a.question_id 
-		where q.type_id = 2 and a.deleted = 0 and q.deleted = 0 and q.status = 2
+		select count(*) from  m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id and a.deleted = 0 
+		where q.type_id = 2 and q.deleted = 0 and q.status = 2
 	</select>
 	
-	<select id="findMyAnswer" resultType="com.xinyue.credit.model.Question">
+	<select id="findMyAnswer" resultType="com.xinyue.manage.model.Question">
 		select q.id id , q.created_time createtime,  q.content content ,q.title title, a.content answerContent  , a.created_time answerCreatetime
-		from m_question_info q inner join m_answer_info a on q.id = a.question_id 
-		where a.created_id =#{createid} and a.deleted = 0 and q.deleted = 0 
+		from m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id and a.deleted = 0 
+		where a.created_id =#{createid} and q.deleted = 0 
  		limit #{start} , #{pageSize}
 	</select>
 	<select id="findMyAnswerCount" resultType="int">
-		select count(*) from m_question_info q inner join m_answer_info a on q.id = a.question_id 
-		where a.created_id =#{createid} and a.deleted = 0 and q.deleted = 0 
+		select count(*) from m_question_info q 
+		inner join m_answer_info a on q.id = a.question_id and a.deleted = 0 
+		where a.created_id =#{createid} and q.deleted = 0 
 	</select>
 	
-	<select id="showAnswer" resultType="com.xinyue.credit.bean.ShowAnswer">
+	<select id="showAnswer" resultType="com.xinyue.manage.beans.ShowAnswer">
 		select q.id id , q.title title , q.content content , q.questioner_type qtype , concat('' , p.name , c.name) address , q.created_time qtime , 
 		a.content acontent , a.created_time atime , a.created_id  acreater, m.contact_name mcreateName, i.real_name ccreateName, a.answer_type atype , o.name oname  
 		from m_question_info q 
-		inner join m_answer_info a on q.id = a.question_id 
+		inner join m_answer_info a on q.id = a.question_id and a.deleted = 0 
 		left join m_area_province p on p.code = q.province_id 
 		left join m_area_city c on c.code = q.city_id 
 		left join m_member_info m on m.id = a.created_id 
 		left join c_manager_info i on i.id = a.created_id 
 		left join m_organization_info o on o.number = q.org_id 
-		where q.id = #{questid} and q.deleted =0 and a.deleted = 0 
+		where q.id = #{questid} and q.deleted =0 
 		limit #{start} , #{pageSize}
 	</select>
 	
 	<select id="getShowAnswerCount" resultType="int">
 		select count(*) from m_question_info q 
-		inner join m_answer_info a on q.id = a.question_id 
+		inner join m_answer_info a on q.id = a.question_id  and a.deleted = 0 
 		left join m_area_province p on p.code = q.province_id 
 		left join m_area_city c on c.code = q.city_id 
 		left join m_member_info m on m.id = a.created_id 
 		left join c_manager_info i on i.id = a.created_id 
 		left join m_organization_info o on o.number = q.org_id 
-		where q.id = #{questid} and q.deleted =0 and a.deleted = 0 
+		where q.id = #{questid} and q.deleted =0  
 	</select>
 	
 	
-	<select id="showZeroAnswer" resultType="com.xinyue.credit.bean.ShowAnswer">
+	<select id="showZeroAnswer" resultType="com.xinyue.manage.beans.ShowAnswer">
 		select q.id id , q.title title , q.content content , q.questioner_type qtype , concat('' , p.name , c.name) address , q.created_time qtime 
 		from m_question_info q  
 		left join m_area_province p on p.code = q.province_id 
 		left join m_area_city c on c.code = q.city_id 
 		left join m_organization_info o on o.number = q.org_id 
-		where q.id = '2' and q.deleted =0 
+		where q.id = #{questid} and q.deleted =0 
 	</select>
 </mapper>

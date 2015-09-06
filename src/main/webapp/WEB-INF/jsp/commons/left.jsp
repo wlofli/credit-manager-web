@@ -14,8 +14,8 @@
 		<li><a class="zh" id="a">账户管理</a>
 			<ul class="fnav">
 				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/user/show'">个人中心</a></li>
-				<li><a href="#">我的消息</a></li>
-				<li><a href="#">分享推荐会员</a></li>
+				<li><a href="javascript:void(0)" onclick="commit('me')">我的消息</a></li>
+				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/memberctr/find'">分享推荐会员</a></li>
 				<li><a href="#">资金管理</a></li>
 				<li><a href="#">积分管理</a></li>
 			</ul></li>
@@ -31,9 +31,10 @@
 			</ul></li>
 		<li><a class="kh" id="a">客户管理</a>
 			<ul class="fnav">
+				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/order/mycustomer'">我的客户</a></li>
 				<li><a href="#">推送客户</a></li>
 				<li><a href="#">领取客户</a></li>
-				<li><a href="#">客户评价</a></li>
+				<li><a href="${ctx}/credit/customer/evaluation">客户评价</a></li>
 			</ul></li>
 		<li><a class="hq" id="a">获取客户</a>
 			<ul class="fnav">
@@ -46,13 +47,13 @@
 			</ul></li>
 		<li><a class="wd" id="a">客户问答</a>
 			<ul class="fnav">
-				<li><a href="#">平台问答</a></li>
-				<li><a href="#">机构问答</a></li>
-				<li><a href="#">我的问答</a></li>
+				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/answerctr/xterrace'">平台问答</a></li>
+				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/answerctr/jterrace'">机构问答</a></li>
+				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/answerctr/myanswer'">我的问答</a></li>
 			</ul></li>
-		<li><a class="al" id="a">成功案例</a>
+		<li><a class="al" id="a" >成功案例</a>
 			<ul class="fnav">
-				<li><a href="#">成功案例</a></li>
+				<li><a href="#" onclick="document.location.href='${ctx}/credit/case/list'">成功案例</a></li>
 			</ul></li>
 		<li><a class="bz" id="a">帮助中心</a>
 			<ul class="fnav">
@@ -66,6 +67,10 @@
 function commit(t){
 	if(t == "person_center"){
 		$("#left_form").attr("action" , "${ctx}/credit/user/show");
+		$("#left_form").submit();
+	}
+	if(t == 'me'){
+		$("#left_form").attr("action" , "${ctx}/credit/messagectr/show");
 		$("#left_form").submit();
 	}
 }
@@ -84,14 +89,11 @@ $(function(){
 				$(this).removeClass("hit");
 			});
 			
-			$(this).parent().addClass("hit");
-			$(this).parent().parent().parent().addClass("hit");
 		}else{
 			$("div.left li").each(function(){
 				$(this).removeClass("hit");
 			});
 			
-			$(this).parent().addClass("hit");
 		}
 		
 	});	

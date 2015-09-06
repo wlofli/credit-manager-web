@@ -15,6 +15,10 @@ public class Globals {
 	
 	public static final String SESSION_PHONE_CODE = "session_phone_code";
 	
+	//add by maozj start
+	public static final String STAR_LEVEL = "star_level";
+	//add by maozj end
+	
 	public static final int PAGE_SIZE = 10;
 	
 	public static boolean isNull(Object obj){

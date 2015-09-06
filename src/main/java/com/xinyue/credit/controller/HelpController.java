@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xinyue.credit.model.HelpModel;
-import com.xinyue.credit.model.PageData;
 import com.xinyue.credit.service.CreditHelpService;
 import com.xinyue.credit.util.Globals;
+import com.xinyue.manage.beans.PageData;
 
 /**
  * 

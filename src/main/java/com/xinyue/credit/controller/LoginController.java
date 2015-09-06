@@ -61,35 +61,35 @@ public class LoginController {
 	public String login(Model model, HttpServletRequest req, User loginInfo) {
 		
 		//debug start
-//		User test = new User();
-//		test.setId("test");
-//		test.setTelPhone("12354647854");
-//		test.setRealName("test");
-//		test.setOrganization("1");
+		User test = new User();
+		test.setId("3");
+		test.setTelPhone("18768104912");
+		test.setRealName("李志超");
+		test.setOrganization("1");
 //		test.setLocation("330100");
-//		test.setLoginType("0");
-//		test.setIpAddress("127.0.0.1");
-//		test.setInvitationCode("abcdef");
-//		test.setHeadImgPath("");
-//		test.setLastLoginTime("2015-06-02");
-//		req.getSession().setAttribute(Globals.SESSION_USER_INFO, test);
-//		return "credit/main";
+		test.setLoginType("0");
+		test.setIpAddress("127.0.0.1");
+		test.setInvitationCode("abcdef");
+		test.setHeadImgPath("");
+		test.setLastLoginTime("2015-06-02");
+		req.getSession().setAttribute(Globals.SESSION_USER_INFO, test);
+		return "credit/main";
 		//debug end
 		
-		User result = loginService.checkUser(loginInfo);
+//		User result = loginService.checkUser(loginInfo);
 		
-		if (result != null) {
-			req.getSession().setAttribute(Globals.SESSION_USER_INFO, result);
-			return "credit/main";
-		} else {
-			model.addAttribute("checkMessage", "账户或密码不正确！");
-			
-			User user = new User();
-			user.setTelPhone(loginInfo.getTelPhone());
-			model.addAttribute("loginInfo", user);
-			
-			return "credit/login";
-		}
+//		if (result != null) {
+//			req.getSession().setAttribute(Globals.SESSION_USER_INFO, result);
+//			return "credit/main";
+//		} else {
+//			model.addAttribute("checkMessage", "账户或密码不正确！");
+//			
+//			User user = new User();
+//			user.setTelPhone(loginInfo.getTelPhone());
+//			model.addAttribute("loginInfo", user);
+//			
+//			return "credit/login";
+//		}
 	}
 
 	/**
@@ -114,15 +114,15 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value="/login/check/code",method=RequestMethod.POST)
-	public @ResponseBody String checkCode(String checkCode,HttpServletRequest request) {
-		return "true";
-//		String sessionCode = request.getSession().getAttribute(Globals.LOGIN_CHECK_CODE).toString();
-//		
-//		if (checkCode.toLowerCase().equals(sessionCode.toLowerCase())) {
-//			return "true";
-//		}else {
-//			return "false";
-//		}
+	public @ResponseBody boolean checkCode(String checkCode,HttpServletRequest request) {
+		
+		String sessionCode = request.getSession().getAttribute(Globals.LOGIN_CHECK_CODE).toString();
+		
+		if (checkCode.toLowerCase().equals(sessionCode.toLowerCase())) {
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
@@ -133,20 +133,18 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value="/register/check/code",method=RequestMethod.POST)
-	public @ResponseBody String checkPhoneCode(String checkCode,HttpServletRequest request) {
+	public @ResponseBody boolean checkPhoneCode(String checkCode,HttpServletRequest request) {
 		
 		try {
 			String sessionCode = request.getSession().getAttribute(Globals.SESSION_PHONE_CODE).toString();
 			
 			if (checkCode.toLowerCase().equals(sessionCode.toLowerCase())) {
-				return "true";
-			}else {
-				return "false";
+				return true;
 			}
 		} catch (Exception e) {
 			log.error("session中不存在手机验证码！");
-			return "false";
 		}
+		return false;
 		
 	}
 	
@@ -156,9 +154,10 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/register/credit/page")
-	public String gotoRegister(Model model) {
+	public String gotoRegister(Model model,String invitationCode) {
 		
 		User user = new User();
+		user.setInvited(invitationCode);
 		model.addAttribute("registerInfo", user);
 		
 		//省

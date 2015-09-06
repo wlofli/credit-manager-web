@@ -23,6 +23,10 @@ $(function(){
 });
 function changePage(url , topage){
 	var totalpage = $("#help_totalPage").val();
+	if(topage<0){
+		alert("所写页码需大于0");
+		return;
+	}
 	if(topage>totalpage){
 		alert("所写页码大于总页码了, 当前总页码为"+totalpage);
 		return;

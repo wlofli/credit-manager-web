@@ -34,11 +34,9 @@ public class User extends ModelBase {
 	
 	private String city = "";
 	private String citys = "";
-	
 
-	private String location = "";
-	
 	private String invitationCode = "";
+	private String invited = "";
 	
 	private String loginType = "";
 	
@@ -242,20 +240,6 @@ public class User extends ModelBase {
 	}
 
 	/**
-	 * @return the location
-	 */
-	public String getLocation() {
-		return location;
-	}
-
-	/**
-	 * @param location the location to set
-	 */
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	/**
 	 * @return the id
 	 */
 	public String getId() {
@@ -435,6 +419,20 @@ public class User extends ModelBase {
 	 */
 	public void setAudit(String audit) {
 		this.audit = audit;
+	}
+
+	/**
+	 * @return the invited
+	 */
+	public String getInvited() {
+		return invited;
+	}
+
+	/**
+	 * @param invited the invited to set
+	 */
+	public void setInvited(String invited) {
+		this.invited = invited;
 	}
 	
 	

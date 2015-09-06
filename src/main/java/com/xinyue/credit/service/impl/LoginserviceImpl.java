@@ -1,6 +1,6 @@
 package com.xinyue.credit.service.impl;
 
-import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -61,11 +61,13 @@ public class LoginserviceImpl implements LoginService {
 				}
 			}
 			
+			//城市
 			if (user.getCity().equals("")) {
-				user.setLocation(user.getProvince());
-			} else {
-				user.setLocation(user.getCity());
+				user.setCity(null);
 			}
+			
+			//id
+			user.setId(UUID.randomUUID().toString().replace("-", ""));
 			
 			int result = loginDAO.saveUser(user);
 			

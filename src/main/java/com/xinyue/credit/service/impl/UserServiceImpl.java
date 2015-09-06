@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -36,10 +35,10 @@ public class UserServiceImpl implements UserService {
 	public User getUserById(Long id) {
 		// TODO Auto-generated method stub
 		User user =  udao.getUserById(id);
-		String location = user.getLocation();
-		user.setProvince(new StringBuffer(location.substring(0, 2)).append("0000").toString());
-		user.setCity(location);
-		user.setCitys(location);
+//		String location = user.getLocation();
+//		user.setProvince(new StringBuffer(location.substring(0, 2)).append("0000").toString());
+//		user.setCity(location);
+		user.setCitys(user.getCity());
 		return user;
 	}
 	
@@ -51,7 +50,7 @@ public class UserServiceImpl implements UserService {
 				user.setTelPhone(user.getTel());
 			}
 			
-			user.setLocation(user.getCity());
+//			user.setLocation(user.getCity());
 			udao.saveUser(user);
 			
 			logger.info("用户信息修改成功  修改者为:"+loginName);

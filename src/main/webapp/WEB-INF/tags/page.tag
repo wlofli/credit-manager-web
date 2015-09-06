@@ -2,7 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ attribute required="true" name="url" type="java.lang.String"%>
-<%@ attribute required="true" name="pageData" type="com.xinyue.credit.model.PageData"%>
+<%@ attribute required="true" name="pageData" type="com.xinyue.manage.beans.PageData"%>
 
 <c:set var="uri" value='<%=url + ((url.indexOf("?")) >= 0?"&":"?") %>'></c:set>
 <c:if test="${pageData.totalPage > 0}">

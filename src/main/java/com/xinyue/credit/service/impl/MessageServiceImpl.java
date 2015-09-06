@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import com.xinyue.credit.bean.MessageInfo;
 import com.xinyue.credit.dao.MessageDao;
 import com.xinyue.credit.model.Message;
-import com.xinyue.credit.model.PageData;
 import com.xinyue.credit.service.MessageService;
 import com.xinyue.credit.util.Globals;
+import com.xinyue.manage.beans.PageData;
 
 /**
  * 

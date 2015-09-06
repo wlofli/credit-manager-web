@@ -884,6 +884,21 @@ i.hdwt{
 	border-radius:5px;
 	behavior:url(ie-css3.htc);
 	}
+.grzx_nr2 p .next_btn2{
+	width:120px;
+	height:35px;
+	line-height:30px;
+	background:#0075a9;
+	text-align:center;
+	color:#fff;
+	margin-left:0;
+	margin-top:50px;
+	border:1px #0075a9 solid;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	behavior:url(ie-css3.htc);
+	}
 .grzx_nr2 p .cz_btn{
 	width:160px;
 	height:35px;
@@ -904,22 +919,22 @@ i.hdwt{
 .smrz{
 	width:100%;
 	height:74px;
-	background:url(../images/zhmm.png) center top no-repeat;
+	background:url(../images/smrz.png) center top no-repeat;
 	overflow:hidden;}
 .smrz1{
 	width:100%;
 	height:74px;
-	background:url(../images/zhmm.png) center -90px no-repeat;
+	background:url(../images/smrz.png) center -80px no-repeat;
 	overflow:hidden;}
 .smrz2{
 	width:100%;
 	height:74px;
-	background:url(../images/zhmm.png) center -180px no-repeat;
+	background:url(../images/smrz.png) center -150px no-repeat;
 	overflow:hidden;}
 .smrz3{
 	width:100%;
 	height:74px;
-	background:url(../images/zhmm.png) center -270px no-repeat;
+	background:url(../images/smrz.png) center -210px no-repeat;
 	overflow:hidden;}
 .grzx_nr2 p .smrz_btn1{
 	width:130px;
@@ -1070,6 +1085,13 @@ i.hdwt{
 	height:50px;
 	margin-right:10px;
 	background:url(../images/f_p_cg.png) no-repeat left top;}	
+	
+.smrz_cg i.smsb{
+	display:inline-block;
+	width:50px;
+	height:50px;
+	margin-right:10px;
+	background:url(../images/f_p_cg1.png) no-repeat left top;}	
 	
 /*弹出框文件样式	*/
 #login{
@@ -1647,27 +1669,6 @@ i.hdwt{
 	text-align:right;
 	margin:30px auto;}
 /*推荐会员页面*/
-.tjhy_p{
-	line-height:30px;
-	height:30px;
-	margin-bottom:20px;
-	margin:0 auto;
-	text-align:left;}
-.tjhy_p .tjhy_bt{
-	width:100px;
-	text-align:right;}	
-.tjhy_p .tjhy_sl{
-	width:100px;
-	text-align:left;}
-.tjhy_p .tjhy_sl strong{
-	color:#f00;
-	display:inline-block;
-	margin:0 10px;}
-.tjhy_p .ckxq{
-	color:#0075a9;
-	}
-.tjhy_p .ckxq:hover{
-	text-decoration:underline;}
 .fwpj{
 	width:auto;
 	margin:15px;}
@@ -1680,32 +1681,40 @@ i.hdwt{
 	font-size:18px;
 	font-weight:bold;
 	margin:0 0 10px 0;}
-		
+	
+.fxfs1{
+	width:49%;
+	float:left;
+	margin:30px 0 0 0;
+	margin-left:10px;
+	height:auto;
+	overflow:hidden;
+	}	
 .fxfs{
-	width:90%;
+	width:60%;
 	margin:30px auto 0 auto;
 	height:auto;
 	}
-.fxfs p{
-	margin:0 10px;
+.fxfs p,.fxfs1 p{
+	margin:5px 10px;
 	margin-bottom:20px;
 	line-height:30px;
 	}
-.fxfs p.bt{
+.fxfs p.bt,.fxfs1 p.bt{
 	margin:0 0 10px 0;
 	font-size:18px;
 	font-weight:bold;}
-.fxfs p span.bt{
+.fxfs p span.bt,.fxfs1 p span.bt{
 	font-size:16px;
 	color:#0075a9;
 	width:100%;
 	text-align:left;}	
-.fxfs p span.tjlj_sp{
+.fxfs p span.tjlj_sp,.fxfs1 p span.tjlj_sp{
 	width:272px;
 	overflow:hidden;
 	text-align:left;
 	margin-right:0;}
-.fxfs p .fxlj{
+.fxfs p .fxlj,.fxfs1 p .fxlj{
 	display:inline-block;
 	margin-left:30px;
 	width:100px;
@@ -1719,6 +1728,34 @@ i.hdwt{
 	-webkit-border-radius:5px;
 	border-radius:5px;
 	behavior:url(ie-css3.htc);}
+
+.tjhy_p{
+	line-height:30px;
+	height:30px;
+	margin-bottom:20px;
+	margin:0 auto;
+	text-align:left;}
+.tjhy_p .tjhy_bt{
+	width:120px;
+	text-align:right;}	
+.tjhy_p .tjhy_sl{
+	width:100px;
+	text-align:left;}
+.tjhy_p .tjhy_sl strong{
+	color:#f00;
+	display:inline-block;
+	margin:0 10px;}
+.tjhy_p .ckxq{
+	color:#0075a9;
+	margin-right:40px;
+	}
+.tjhy_p .ckxq strong{
+	font-weight:bold;
+	color:#0075a9;
+	font-size:18px;}	
+.tjhy_p .ckxq:hover{
+	text-decoration:underline;}	
+	
 /*推荐会员列表*/
 .tjhy_table{
 	width:100%;

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xinyue.credit.bean.MessageInfo;
 import com.xinyue.credit.model.Message;
-import com.xinyue.credit.model.PageData;
+import com.xinyue.credit.model.User;
 import com.xinyue.credit.service.MessageService;
+import com.xinyue.credit.util.Globals;
+import com.xinyue.manage.beans.PageData;
 
 /**
  * 
@@ -32,6 +34,8 @@ public class MessageController {
 	
 	@RequestMapping("/show")
 	public String findPage(MessageInfo minfo , Model model , HttpServletRequest req){
+		User m = (User)req.getSession().getAttribute(Globals.SESSION_USER_INFO);
+		minfo.setUserid(m.getId());
 		PageData<Message> pdata = mbiz.findPageList(minfo);
 		model.addAttribute("mpage", pdata);
 		model.addAttribute("minfo", minfo);
@@ -52,7 +56,7 @@ public class MessageController {
 	@RequestMapping(value = "/updateRead" , method={RequestMethod.POST})
 	@ResponseBody
 	public String read(@RequestBody List<String> list , HttpServletRequest req){
-		System.out.println(list.get(0));
+		
 		boolean b = mbiz.updateRead(list);
 		if(b){
 			return "success";
