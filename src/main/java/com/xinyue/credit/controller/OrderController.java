@@ -97,7 +97,6 @@ public class OrderController {
 	@ResponseBody
 	public String buyFixed(String fixId ,HttpSession session){
 		User user = (User)session.getAttribute(Globals.SESSION_USER_INFO);
-System.out.println(user.getId());
 		JSONObject jsonObject = new JSONObject();
 		try {
 			if(orderCustomerService.saveOrderFixed(fixId, user.getId(), user.getId())){
@@ -121,7 +120,6 @@ System.out.println(user.getId());
 	public String myCustomer(@RequestParam(defaultValue="1")int topage, @ModelAttribute("searchCustomer")SearchCustomer searchCustomer, 
 			HttpSession session, Model model){
 		User user = (User) session.getAttribute(Globals.SESSION_USER_INFO);
-System.out.println(user);
 		List<SelectInfo> productList = selectService.getProductList();
 		model.addAttribute("productList", productList);
 		
@@ -174,7 +172,7 @@ System.out.println(user);
 		try {
 			orderTrack.setId(UUID.randomUUID().toString().replaceAll("-", ""));
 			orderTrack.setCreatedId(user.getId());
-			orderTrackService.addOrderTrack(orderTrack);
+			orderTrackService.addOrderTrack(orderTrack, user.getRealName());
 		} catch (Exception e) {
 			// TODO: handle exception
 			return GlobalConstant.RET_FAIL;

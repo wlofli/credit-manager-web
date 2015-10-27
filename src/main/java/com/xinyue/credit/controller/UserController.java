@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -17,10 +20,20 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.xinyue.credit.model.User;
 import com.xinyue.credit.service.UserService;
 import com.xinyue.credit.util.Globals;
+import com.xinyue.manage.beans.PageData;
+import com.xinyue.manage.beans.SearchReward;
 import com.xinyue.manage.beans.SelectInfo;
+import com.xinyue.manage.model.Consumption;
+import com.xinyue.manage.model.OutLine;
+import com.xinyue.manage.model.Recharge;
+import com.xinyue.manage.model.Reward;
+import com.xinyue.manage.model.WithdrawMoney;
 import com.xinyue.manage.service.CityService;
+import com.xinyue.manage.service.FundService;
 import com.xinyue.manage.service.OrganizationService;
+import com.xinyue.manage.service.RewardService;
 import com.xinyue.manage.service.SelectService;
+import com.xinyue.manage.util.GlobalConstant;
 
 /**
  * 
@@ -34,6 +47,15 @@ public class UserController {
 
 	@Resource
 	private UserService ubiz;
+	
+
+	//add by lzc
+	@Resource
+	private RewardService rewardService;
+	
+	//add by lzc
+	@Resource
+	private FundService fundService;
 	
 	@Resource
 	private SelectService sbiz;
@@ -175,4 +197,92 @@ public class UserController {
 		}
 		return "fail";
 	}
+	
+//	add by lzc start
+	@RequestMapping("withdraw/list")
+	public String withdrawList(@ModelAttribute("search")SearchReward searchReward, Model model, 
+			HttpSession session,@RequestParam(defaultValue="1")int topage){
+		User user = (User) session.getAttribute(Globals.SESSION_USER_INFO);
+		OutLine outLine = rewardService.getOutLine(user.getId(), GlobalConstant.USER_TYPE_CREDIT);
+		model.addAttribute("outline", outLine);
+		model.addAttribute(Globals.FUND_TYPE, Globals.FUND_TYPE_WITHDRAW);
+		List<WithdrawMoney> withdrawMoneyList = rewardService
+				.getRewardWithdrawList(user.getId(), (topage - 1) * GlobalConstant.PAGE_SIZE, GlobalConstant.PAGE_SIZE, searchReward);
+		int count = rewardService.countRewardWithdraw(user.getId(), searchReward);
+		PageData<WithdrawMoney> page = 	new PageData<WithdrawMoney>(withdrawMoneyList, count, topage);
+		model.addAttribute("page", page);
+		return "credit/fund/withdrawList";
+	}
+	
+	
+	@RequestMapping("detail/list")
+	public String fundDetailList(@ModelAttribute("search")SearchReward searchReward, Model model,
+			HttpSession session,@RequestParam(defaultValue="1")int topage){
+		User user = (User) session.getAttribute(Globals.SESSION_USER_INFO);
+		OutLine outLine = rewardService.getOutLine(user.getId(), GlobalConstant.USER_TYPE_CREDIT);
+		model.addAttribute("outline", outLine);
+		model.addAttribute(Globals.FUND_TYPE, Globals.FUND_TYPE_DETAIL);
+		List<OutLine> outLineList = rewardService.getDetaiList(user.getId(), GlobalConstant.USER_TYPE_CREDIT, 
+						(topage - 1) * GlobalConstant.PAGE_SIZE, GlobalConstant.PAGE_SIZE, searchReward);
+		
+		int count = rewardService.countDetailList(user.getId(), GlobalConstant.USER_TYPE_CREDIT, searchReward);
+		
+		PageData<OutLine> page = new PageData<OutLine>(outLineList, count, topage);
+		model.addAttribute("page", page);
+		return "credit/fund/detailList";
+	}
+	
+	
+	@RequestMapping("reward/list")
+	public String rewardList(@ModelAttribute("search")SearchReward searchReward, Model model,HttpSession session,
+			@RequestParam(defaultValue="1")int topage){
+		User user = (User) session.getAttribute(Globals.SESSION_USER_INFO);
+		OutLine outLine = rewardService.getOutLine(user.getId(), GlobalConstant.USER_TYPE_CREDIT);
+		model.addAttribute("outline", outLine);
+		model.addAttribute(Globals.FUND_TYPE, Globals.FUND_TYPE_REWARD);
+		List<Reward> rewards = rewardService.getRewardList(user.getId(), 
+				(topage - 1) * GlobalConstant.PAGE_SIZE, GlobalConstant.PAGE_SIZE, searchReward);
+		int count = rewardService.countRewardList(user.getId(), searchReward);
+		PageData<Reward> page = new PageData<Reward>(rewards, count, topage);
+		model.addAttribute("page", page);
+		return "credit/fund/rewardList";
+	}
+	
+	
+	@RequestMapping("consumption/list")
+	public String consumptionList(@ModelAttribute("search")SearchReward searchReward,Model model,HttpSession session,
+			@RequestParam(defaultValue="1")int topage){
+		User user = (User) session.getAttribute(Globals.SESSION_USER_INFO);
+		OutLine outLine = rewardService.getOutLine(user.getId(), GlobalConstant.USER_TYPE_CREDIT);
+		model.addAttribute("outline", outLine);
+		model.addAttribute(Globals.FUND_TYPE, Globals.FUND_TYPE_CONSUMPTION);
+		List<Consumption> consumptions = fundService.getConsumptionsByUserId(user.getId(),GlobalConstant.USER_TYPE_CREDIT,
+				(topage -1) * GlobalConstant.PAGE_SIZE, GlobalConstant.PAGE_SIZE, searchReward);
+		
+		int count = fundService.countConsumptionByUserId(user.getId(),GlobalConstant.USER_TYPE_CREDIT,searchReward);
+		
+		PageData<Consumption> page = new PageData<Consumption>(consumptions, count, topage);
+		model.addAttribute("page", page);
+		return "credit/fund/consumptionList";
+	}
+	
+	@RequestMapping("recharge/list")
+	public String rechargeList(@ModelAttribute("search")SearchReward searchReward,Model model,HttpSession session,
+			@RequestParam(defaultValue="1")int topage){
+		User user = (User) session.getAttribute(Globals.SESSION_USER_INFO);
+		OutLine outLine = rewardService.getOutLine(user.getId(), GlobalConstant.USER_TYPE_CREDIT);
+		model.addAttribute("outline", outLine);
+		model.addAttribute(Globals.FUND_TYPE, Globals.FUND_TYPE_RECHARGE);
+		List<Recharge> recharges = fundService
+				.getRechargesByUserId(user.getId(), GlobalConstant.USER_TYPE_CREDIT, (topage - 1) * GlobalConstant.PAGE_SIZE, GlobalConstant.PAGE_SIZE, searchReward);
+		int count = fundService.countRechargeByUserId(user.getId(), GlobalConstant.USER_TYPE_CREDIT, searchReward);
+		PageData<Recharge> page = new PageData<Recharge>(recharges, count, topage);
+		model.addAttribute("page", page);
+		return "credit/fund/rechargeList";
+	}
+//	add by lzc end
+	
+	
+	
+	
 }

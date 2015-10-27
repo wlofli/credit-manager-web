@@ -62,9 +62,9 @@ public class LoginserviceImpl implements LoginService {
 			}
 			
 			//城市
-			if (user.getCity().equals("")) {
-				user.setCity(null);
-			}
+//			if (user.getCity().equals("")) {
+//				user.setCity(null);
+//			}
 			
 			//id
 			user.setId(UUID.randomUUID().toString().replace("-", ""));

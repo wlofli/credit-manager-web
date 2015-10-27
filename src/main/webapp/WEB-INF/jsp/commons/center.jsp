@@ -12,33 +12,32 @@
 								src="${ctx }/images/hy_tx.png" alt="会员名" /></a></li>
 						<li class="gly_xx1">
 							<div>
-								<span>姓名：</span><strong>王某某</strong>
+								<span>姓名：</span><strong>${creditManager.personName }</strong>
 							</div>
 							<div>
-								<span>机构：</span><strong>杭州摩科</strong>
+								<span>机构：</span><strong>${creditManager.organization }</strong>
 							</div>
 							<div id="star">
 								<span>服务：</span>
-								<ul>
-									<li><a href="javascript:;">1</a></li>
-									<li><a href="javascript:;">2</a></li>
-									<li><a href="javascript:;">3</a></li>
-									<li><a href="javascript:;">4</a></li>
-									<li><a href="javascript:;">5</a></li>
-								</ul>
-								<span></span>
+								<img src="${ctx}/images/${creditManager.starLevel }" width="92px" />
 								<p></p>
 							</div>
 						</li>
 						<li class="gly_xx2">
 							<div>
-								<span>实名认证：</span><strong>已认证</strong>
+								<span>实名认证：</span><strong>
+								<c:if test="${creditManager.realNameStatus == true }">已认证</c:if>
+								<c:if test="${creditManager.realNameStatus == false }">未认证</c:if>
+								</strong>
 							</div>
 							<div>
-								<span>机构认证：</span><strong>已认证</strong>
+								<span>机构认证：</span><strong>
+								<c:if test="${creditManager.organizationAuthStatus == true }">已认证</c:if>
+								<c:if test="${creditManager.organizationAuthStatus == false }">已认证</c:if>
+								</strong>
 							</div>
 							<div>
-								<span>服务区域：</span><strong>杭州大市、临安市、宁波市……</strong>
+								<span>服务区域：</span><strong>${creditManager.serverZone }</strong>
 							</div>
 						</li>
 						<li class="clear"></li>
@@ -46,7 +45,12 @@
 				</div>
 				<div class="hyxx2">
 					<ul>
-						<li><a href="zjgl.html">3000<span>账户余额</span></a></li>
+						<li><a href="zjgl.html">
+						<c:choose>
+							<c:when test="${empty outline.cashRemain}">0</c:when>
+							<c:otherwise>${outline.cashRemain }</c:otherwise>
+						</c:choose>
+						<span>账户余额</span></a></li>
 						<li><a href="zjgl.html">233<span>代金券余额</span></a></li>
 						<li><a href="zjgl3.html">25<span>奖励余额</span></a></li>
 						<li><a href="jfgl.html">1250<span>剩余积分</span></a></li>
@@ -91,19 +95,19 @@
 					<span>商务顾问</span>
 				</dt>
 				<dd>
-					您的顾问：<span>李小姐</span>
+					您的顾问：<span>${servicer.name }</span>
 				</dd>
 				<dd>
-					联系手机：<span>15586986986</span>
+					联系手机：<span>${servicer.phone }</span>
 				</dd>
 				<dd>
-					联系电话：<span>0571-6855954000</span>
+					联系电话：<span>${servicer.tel }</span>
 				</dd>
 				<dd>
-					Q Q客服：<span>125156894</span>
+					Q Q客服：<span>${servicer.qq }</span>
 				</dd>
 				<dd>
-					微信号码：<span>dwa15586986859</span>
+					微信号码：<span>${servicer.weChat }</span>
 				</dd>
 			</dl>
 		</div>

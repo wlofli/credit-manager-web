@@ -4,10 +4,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.xinyue.credit.bean.RecommendCredit;
-import com.xinyue.credit.bean.RecommendMember;
 import com.xinyue.credit.dao.RecommendMemberDao;
 import com.xinyue.credit.service.MemberBiz;
+import com.xinyue.manage.beans.RecommendCredit;
+import com.xinyue.manage.beans.RecommendMember;
 import com.xinyue.manage.util.CommonFunction;
 
 /**

@@ -20,14 +20,15 @@ public class AccessibilityInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		
 		Object user = request.getSession().getAttribute(Globals.SESSION_USER_INFO);
 		
-		String redirectUrl = request.getContextPath()+Globals.REDIRECT_URL;
+//		String redirectUrl = request.getContextPath()+Globals.REDIRECT_URL;
+		
+		String redirect = request.getContextPath() + Globals.REDIRECT;
 		
 		if (user == null) {
-			log.info("重定向url："+redirectUrl);
-			response.sendRedirect(redirectUrl);
+			log.info("重定向url："+redirect);
+			response.sendRedirect(redirect);
 		}else {
 			return true;
 		}
@@ -47,7 +48,7 @@ public class AccessibilityInterceptor implements HandlerInterceptor {
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 	
 	

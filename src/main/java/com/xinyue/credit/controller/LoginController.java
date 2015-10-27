@@ -73,11 +73,11 @@ public class LoginController {
 		test.setHeadImgPath("");
 		test.setLastLoginTime("2015-06-02");
 		req.getSession().setAttribute(Globals.SESSION_USER_INFO, test);
-		return "credit/main";
+		return "forward:/home/home";
 		//debug end
 		
 //		User result = loginService.checkUser(loginInfo);
-		
+//		
 //		if (result != null) {
 //			req.getSession().setAttribute(Globals.SESSION_USER_INFO, result);
 //			return "credit/main";
@@ -88,7 +88,7 @@ public class LoginController {
 //			user.setTelPhone(loginInfo.getTelPhone());
 //			model.addAttribute("loginInfo", user);
 //			
-//			return "credit/login";
+//			return "forward:home/home";
 //		}
 	}
 

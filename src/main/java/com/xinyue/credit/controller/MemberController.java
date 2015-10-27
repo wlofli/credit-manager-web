@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xinyue.credit.bean.EmailBean;
-import com.xinyue.credit.bean.RecommendCredit;
-import com.xinyue.credit.bean.RecommendMember;
 import com.xinyue.credit.model.User;
-import com.xinyue.credit.service.CommonService;
 import com.xinyue.credit.service.MemberBiz;
 import com.xinyue.credit.util.Globals;
+import com.xinyue.manage.beans.EmailBean;
+import com.xinyue.manage.beans.RecommendCredit;
+import com.xinyue.manage.beans.RecommendMember;
+import com.xinyue.manage.service.CommonService;
 
 /**
  * 
@@ -37,7 +37,6 @@ public class MemberController {
 	public String show(Model model , HttpServletRequest req){
 		User u = (User)req.getSession().getAttribute(Globals.SESSION_USER_INFO);
 		String yaoqm = mbiz.getYaoqm(u.getId());
-		yaoqm = "2010";
 		model.addAttribute("code", yaoqm);
 		model.addAttribute("credit", mbiz.getRecommendCredit(yaoqm));
 		model.addAttribute("member", mbiz.getRecommendMember(yaoqm));

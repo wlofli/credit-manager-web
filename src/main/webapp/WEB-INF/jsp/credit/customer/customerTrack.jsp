@@ -195,8 +195,9 @@ function addinfo(n,p){
 <tr>
 <td colspan="1"><fmt:formatDate value="${list.createdTime }" pattern="yyyy-MM-dd"/></td>
 <td colspan="1">${list.status }</td>
-<td colspan="1"><c:if test="${list.info != null and list.info != ''}">已下载${list.info }</c:if>
-<c:if test="${list.price != null && list.price != '' }">(${list.price }元)</c:if>
+<td colspan="1">
+	<c:if test="${list.info != null and list.info != ''}">已下载${list.info }</c:if>
+	<c:if test="${list.price != null && list.price != '' }">(${list.price }元)</c:if>
 </td>
 <td colspan="1">${list.remark } </td>
 </tr>

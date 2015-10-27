@@ -78,7 +78,7 @@
 			<s:form action="${ctx}/register/credit/submit" commandName="registerInfo" method="post" id="registerForm" >
 				<div class="zc_wbk">
 					<span class="zc_bt">手机号:</span>
-					<s:input path="telPhone" class="text required digits" id="tel"/>
+					<s:input path="telPhone" class="text required digits" id="tel" maxlength="11"/>
 					<s:hidden path="invited"/>
 				</div>
 				<div class="zc_wbk">
@@ -225,7 +225,7 @@ function register(){
 			$("#code_btn").removeClass("btn_sjyz1");
 			$("#code_btn").addClass("btn_sjyz");
 			$("#code_btn").removeAttr("disabled");
-			time = 5;
+			time = 61;
 		} else {
 			$("#code_btn").removeClass("btn_sjyz");
 			$("#code_btn").addClass("btn_sjyz1");

@@ -40,18 +40,6 @@ $(function(){
 	});
 });
 
-function tab_item(n)
-{
-		var menu = document.getElementById("menu");
-		var menuli = menu.getElementsByTagName("li");
-		for(var i = 0; i< menuli.length; i++)
-		{
-			menuli[i].className="";
-			menuli[n].className="hit";
-			document.getElementById("tab"+ i).style.display = "none";
-			document.getElementById("tab"+ n).style.display = "block";
-		}
-} 
 
 </script>
 </head>

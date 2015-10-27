@@ -2,8 +2,8 @@ package com.xinyue.credit.dao;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.xinyue.credit.bean.RecommendCredit;
-import com.xinyue.credit.bean.RecommendMember;
+import com.xinyue.manage.beans.RecommendCredit;
+import com.xinyue.manage.beans.RecommendMember;
 
 
 /**

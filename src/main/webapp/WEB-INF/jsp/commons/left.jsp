@@ -9,14 +9,14 @@
 		<li class="bj0"><span>信贷经理中心</span></li>
 		<li class="hit"><a class="zy" id="a">我的主页</a>
 			<ul class="fnav">
-				<li class="hit"><a href="#">我的主页</a></li>
+				<li class="hit"><a href="javascript:void(0)" onclick="document.location.href='${ctx}/home/home'">我的主页</a></li>
 			</ul></li>
 		<li><a class="zh" id="a">账户管理</a>
 			<ul class="fnav">
 				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/user/show'">个人中心</a></li>
 				<li><a href="javascript:void(0)" onclick="commit('me')">我的消息</a></li>
 				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/memberctr/find'">分享推荐会员</a></li>
-				<li><a href="#">资金管理</a></li>
+				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/user/detail/list'">资金管理</a></li>
 				<li><a href="#">积分管理</a></li>
 			</ul></li>
 		<li><a class="cp" id="a">产品推广</a>

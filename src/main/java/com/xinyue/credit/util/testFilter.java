@@ -21,17 +21,17 @@ public class testFilter  extends OncePerRequestFilter{
 		// TODO Auto-generated method stub
 		String uri = request.getRequestURI();
 //		System.out.println(request.getServletPath());
-		if(!request.getServletPath().startsWith("/images") 
-				&& !request.getServletPath().startsWith("/js"  ) 
-				&& !request.getServletPath().startsWith( "/html" ) 
-				&& !request.getServletPath().startsWith(  "/errors " ) 
-				&&!request.getServletPath().startsWith( "/favicon" ) 
-				&& !request.getServletPath().startsWith("/css")
-				){
+//		if(!request.getServletPath().startsWith("/images") 
+//				&& !request.getServletPath().startsWith("/js"  ) 
+//				&& !request.getServletPath().startsWith( "/html" ) 
+//				&& !request.getServletPath().startsWith(  "/errors " ) 
+//				&&!request.getServletPath().startsWith( "/favicon" ) 
+//				&& !request.getServletPath().startsWith("/css")
+//				){
 			System.err.println("uri=" + uri);
-		}
+//		}
 		
-		
+//		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		filterChain.doFilter(request, response);
 		
 	}
