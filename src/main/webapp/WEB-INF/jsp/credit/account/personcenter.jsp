@@ -40,6 +40,7 @@ $(function(){
 function convert(){
 	$("#person_center_convert").attr("action" , "${ctx}/credit/user/cert");
 	$("#person_center_convert").submit();
+	
 }
 </script>
 </head>
@@ -59,7 +60,7 @@ function convert(){
 				<div class="grzx_nr">
 					<div class="grzx_nr1">
 						<ul>
-							<li><a href="javascript:void(0)" class="hit">个人资料</a></li>
+							<li><a href="javascript:void(0)"  class="hit">个人资料</a></li>
 							<li><a href="javascript:void(0)" onclick="convert()" >实名认证</a></li>
 						</ul>
 					</div>

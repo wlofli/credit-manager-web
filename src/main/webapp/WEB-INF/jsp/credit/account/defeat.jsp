@@ -10,6 +10,16 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%@ include file="../../commons/common.jsp"  %>
 <script type="text/javascript">
+$(function(){
+	
+	$("div.left li").each(function(){
+		$(this).removeClass("hit");
+	});
+	$("a.zh").parent().addClass("hit");
+	$("a.zh").parent().children().find("li").eq(0).addClass("hit");
+	
+});
+
 function convert(t){
 	
 	if(t == 'p'){

@@ -13,7 +13,11 @@
 <%@ include file="../../commons/common.jsp"%>
 
 <script type="text/javascript">
-
+$(function(){
+	$("a.kh").parent().addClass("hit");
+	$("a.kh").parent().children().find("li").eq(0).addClass("hit");
+	
+});
 function changeSel(option){
 	if(option == 10){
 		$("#fkcg").show();
@@ -104,7 +108,7 @@ function addinfo(n,p){
 
 <span class="dd_zt">订单状态：<strong>
 <c:forEach items="${statuslist }" var="list">
-	<c:if test="${list.key == order.status }">${list.value }</c:if>
+	<c:if test="${list.key == order.orderStatus }">${list.value }</c:if>
 </c:forEach>
 </strong></span>
 </div>
@@ -121,11 +125,11 @@ function addinfo(n,p){
 <span>申贷时间：<fmt:formatDate value="${order.applicantTime }" pattern="yyyy-MM-dd"/></span>
 </p>
 <c:choose>
-<c:when test="${order.status == 10 || order.status == 11 }">
+<c:when test="${order.orderStatus == 10 || order.orderStatus == 11 }">
 <p>
 <span>订单状态：
 <c:forEach items="${statuslist }" var="list">
-	<c:if test="${list.key == order.status }">${list.value }</c:if>
+	<c:if test="${list.key == order.orderStatus }">${list.value }</c:if>
 </c:forEach></span>
 <span>放款金额(万元)：${order.creditReal }</span>
 <span>放款时间：<fmt:formatDate value="${order.receiveTime }" pattern="yyyy-MM-dd"/></span>
@@ -140,7 +144,7 @@ function addinfo(n,p){
 <input type="hidden" name="orderType" value="${order.type }" />
 <p class="hform">
 <span>订单状态：</span>
-<sf:select path="status" id="status" cssClass="ddzt_s1" onchange="changeSel(this.options[this.options.selectedIndex].value)">
+<sf:select path="orderStatus" name="orderStatus" id="status"  cssClass="ddzt_s1" onchange="changeSel(this.options[this.options.selectedIndex].value)">
 	<sf:options items="${statuslist }" itemLabel="value" itemValue="key" />
 </sf:select>
 </p> 
@@ -162,7 +166,7 @@ function addinfo(n,p){
 </c:choose>
 
 <form action="${ctx }/order/cusomer/addtrack" method="post" id="infoForm">
-<input type="hidden"  name="status" value="${order.status }" />
+<input type="hidden"  name="orderStatus" value="${order.orderStatus }" />
 <input type="hidden" name="orderId" value="${order.id }" />
 <input type="hidden" name="orderType" value="${order.type }" />
 <input type="hidden" id="price" name="price" value="" />

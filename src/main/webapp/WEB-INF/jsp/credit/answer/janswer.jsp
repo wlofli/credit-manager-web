@@ -67,12 +67,24 @@ $(function(){
 									<c:forEach items="${pageanswer.data }" var="panswer">
 									<li>
 										<p class="wt1">
-											<c:if test="${panswer.atype eq 'c' }" var="flags">
-												<a class="hdz" href="#">${panswer.ccreateName }</a><span class="hdzsf">信贷经理</span>
-											</c:if>
-											<c:if test="${not flags }">
-												<a class="hdz" href="#">${panswer.mcreateName }</a><span class="hdzsf">普通会员</span>
-											</c:if>|<span
+										<c:choose>
+												<c:when test="${panswer.atype eq 'c' }">
+													<a class="hdz" href="#">${panswer.ccreateName }</a><span class="hdzsf">信贷经理</span>
+												</c:when>
+												<c:when test="${panswer.atype eq 'm' }">
+													<a class="hdz" href="#">${panswer.mcreateName }</a><span class="hdzsf">普通会员</span>
+												</c:when>
+												<c:otherwise>
+													<a class="hdz" href="#"></a><span class="hdzsf">匿名</span>
+												</c:otherwise>
+											</c:choose>
+<%-- 											<c:if test="${panswer.atype eq 'c' }" var="flags"> --%>
+<%-- 												<a class="hdz" href="#">${panswer.ccreateName }</a><span class="hdzsf">信贷经理</span> --%>
+<%-- 											</c:if> --%>
+<%-- 											<c:if test="${not flags }"> --%>
+<%-- 												<a class="hdz" href="#">${panswer.mcreateName }</a><span class="hdzsf">普通会员</span> --%>
+<%-- 											</c:if> --%>
+											|<span
 												class="fwly">服务地区：${panswer.address }</span>|<span class="fwly">服务机构：${panswer.oname }</span><span
 												class="hdsj">${panswer.atime }</span>
 										</p>

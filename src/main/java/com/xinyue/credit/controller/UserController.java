@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +21,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.xinyue.credit.model.User;
 import com.xinyue.credit.service.UserService;
 import com.xinyue.credit.util.Globals;
+import com.xinyue.credit.util.SecurityUtils;
+import com.xinyue.manage.beans.InvitationMemberInfo;
 import com.xinyue.manage.beans.PageData;
+import com.xinyue.manage.beans.SearchRecommend;
 import com.xinyue.manage.beans.SearchReward;
 import com.xinyue.manage.beans.SelectInfo;
 import com.xinyue.manage.model.Consumption;
@@ -29,6 +33,8 @@ import com.xinyue.manage.model.Recharge;
 import com.xinyue.manage.model.Reward;
 import com.xinyue.manage.model.WithdrawMoney;
 import com.xinyue.manage.service.CityService;
+import com.xinyue.manage.service.CommonService;
+import com.xinyue.manage.service.CreditManagerService;
 import com.xinyue.manage.service.FundService;
 import com.xinyue.manage.service.OrganizationService;
 import com.xinyue.manage.service.RewardService;
@@ -53,9 +59,18 @@ public class UserController {
 	@Resource
 	private RewardService rewardService;
 	
+	private Logger log = Logger.getLogger(getClass());
+	
+	@Resource
+	private CommonService commonService;
+	
 	//add by lzc
 	@Resource
 	private FundService fundService;
+	
+	@Resource
+	private CreditManagerService creditManagerService;
+	
 	
 	@Resource
 	private SelectService sbiz;
@@ -74,7 +89,7 @@ public class UserController {
 		List<SelectInfo> organizations = obiz.getOrganizations();
 		model.addAttribute("organizations", organizations);
 		User user = (User)req.getSession().getAttribute(Globals.SESSION_USER_INFO);
-		model.addAttribute("user", ubiz.getUserById(Long.valueOf(user.getId())));
+		model.addAttribute("user", ubiz.getUserById(user.getId()));
 		return "credit/account/personcenter";
 	}
 	
@@ -280,9 +295,69 @@ public class UserController {
 		model.addAttribute("page", page);
 		return "credit/fund/rechargeList";
 	}
-//	add by lzc end
-	
-	
+
+		@RequestMapping("certification/code/send")
+		@ResponseBody
+		public String codeSend(String phone, HttpServletRequest request){
+			String code = SecurityUtils.randomStr(4);
+			
+			boolean result = commonService.sendCodeByPhone(phone,code);
+//			boolean result = true;//测试用
+			if (result) {
+				log.info("验证码发送成功---手机号："+phone+"；验证码："+code);
+				request.getSession().setAttribute(Globals.CERTIFICATION_PHONE_CODE, code);
+				return GlobalConstant.RET_SUCCESS;
+			}else {
+				log.info("验证码发送失败!!!---手机号："+phone+"；验证码："+code);
+				return GlobalConstant.RET_FAIL;
+			}
+			
+		}
+		
+		@RequestMapping("certification/code/check")
+		@ResponseBody
+		public boolean codeCheck(String checkCode, HttpServletRequest request){
+			try {
+				String sessionCode = request.getSession().getAttribute(Globals.CERTIFICATION_PHONE_CODE).toString();
+				
+				if (checkCode.toLowerCase().equals(sessionCode.toLowerCase())) {
+					return true;
+				}
+			} catch (Exception e) {
+				log.error("session中不存在手机验证码！");
+			}
+			return false;
+		}
+		
+		
+		@RequestMapping("recommend/member")
+		public String recommendMember(Model model,  @RequestParam(defaultValue="1")int index,
+				@ModelAttribute("search")SearchRecommend recommend, HttpServletRequest req){
+			User u = (User)req.getSession().getAttribute(Globals.SESSION_USER_INFO);
+			List<InvitationMemberInfo> memberInfos = creditManagerService
+					.getInvitationMember(u.getId(), (index - 1) *GlobalConstant.PAGE_SIZE, recommend);
+			int countall = creditManagerService.countInvitationMember(u.getId(), recommend);
+			PageData<InvitationMemberInfo> page = new PageData<InvitationMemberInfo>(memberInfos, countall,  index);
+			model.addAttribute("page", page);
+			return "credit/account/recommendMember";
+			
+		}
+		
+		@RequestMapping("recommend/manager")
+		public String recommendManager(Model model, @RequestParam(defaultValue="1")int index,
+				@ModelAttribute("search")SearchRecommend recommend, HttpServletRequest req){
+			User u = (User)req.getSession().getAttribute(Globals.SESSION_USER_INFO);
+			List<InvitationMemberInfo> managerInfos = creditManagerService
+					.getInvitationManager(u.getId(), (index - 1) *GlobalConstant.PAGE_SIZE, recommend);
+			int countall = creditManagerService.countInvitationMangager(u.getId(), recommend);
+			PageData<InvitationMemberInfo> page = new PageData<InvitationMemberInfo>(managerInfos, countall, index);
+			model.addAttribute("page", page);
+			return "credit/account/recommendManager";
+			
+		}
+		
+		
+//		add by lzc end	
 	
 	
 }

@@ -20,7 +20,7 @@
 		        left join
 		    c_certification_info c ON m.id = c.userid
 		        left join
-		    m_organization_info o ON m.organization = o.number
+			m_organization_info o ON m.organization = o.id
 		where
 		    m.id = #{id} and m.deleted = 0
 		group by o.number; 
@@ -43,6 +43,17 @@
 		left join m_area_province p on p.code = c.province 
 		where c.deleted = 0 and s.type_code = 'sex' and c.userid = #{id} 
 	</select>
+	
+	
+	<select id="getFilePathByCertId" resultType="com.xinyue.credit.model.User">
+		SELECT
+			 c.card_img cardImgPath , 
+			 c.work_img workImgPath ,
+			 c.half_img headImgPath 
+		FROM c_certification_info c 
+		WHERE c.id = #{id}
+	</select>
+	
 	
 	<update id="updateCert" parameterType="com.xinyue.credit.model.User">
 		update c_certification_info set real_name=#{realName} , sex=#{sex} , idcard=#{idcard} , telphone=#{telPhone} , organization=#{organization} , 

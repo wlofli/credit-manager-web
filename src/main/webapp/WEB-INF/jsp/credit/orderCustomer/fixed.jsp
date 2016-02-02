@@ -12,15 +12,17 @@
 <link rel="icon" href="../images/moke.ico" />
 <%@include file="../../commons/common.jsp" %>
 <script type="text/javascript">
-
+$(function(){
+	
+	$("div.left li").each(function(){
+		$(this).removeClass("hit");
+	});
+	$("a.hq").parent().addClass("hit");
+	$("a.hq").parent().children().find("li").eq(1).addClass("hit");
+	
+});
 </script>
 <script>
-$(document).ready(function(){
-$(".gly").click(function(){
-    $(".zkcd").slideToggle("slow");
-  });
-});
-
 
 function search(){
 	$("#searchForm").submit();
@@ -87,21 +89,7 @@ function buyfixed(fixId){
 <jsp:include page="../../commons/left.jsp"></jsp:include>
 
 <div class="right">
-<div class="r1">
-<div class="r1_l">
-<a href="#" class="xl" title="新浪分享"></a>
-<a href="#" class="wx" title="微信分享"></a>
-<a href="#" class="qq" title="qq分享"></a>
-<div class="clear"></div>
-</div>
-<div class="r1_r">
-<a href="cptg.html" class="cp" title="新产品"><span>3</span></a>
-<a href="news.html" class="xx" title="新消息"><span>12</span></a>
-<a href="#" class="gly" title="">刘小小</a>
-<div class="zkcd"><a href="xgmm.html">修改密码</a><a href="login.html">退出</a></div>
-<div class="clear"></div>
-</div>
-</div>
+<jsp:include page="../../commons/head.jsp"></jsp:include>
 <div class="grzl">
 <div class="grzx_bt">
 <span>立即领取</span>

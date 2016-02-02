@@ -27,6 +27,11 @@ import com.xinyue.manage.service.SelectService;
  * @version v1.0
  * @date 创建时间：2015年7月8日
  */
+/**
+ * lzc 15-11-30 registerSubmit()修改
+ * 
+ *
+ */
 @Controller
 public class LoginController {
 
@@ -61,35 +66,35 @@ public class LoginController {
 	public String login(Model model, HttpServletRequest req, User loginInfo) {
 		
 		//debug start
-		User test = new User();
-		test.setId("3");
-		test.setTelPhone("18768104912");
-		test.setRealName("李志超");
-		test.setOrganization("1");
+//		User test = new User();
+//		test.setId("test");
+//		test.setTelPhone("12354647854");
+//		test.setRealName("test");
+//		test.setOrganization("1");
 //		test.setLocation("330100");
-		test.setLoginType("0");
-		test.setIpAddress("127.0.0.1");
-		test.setInvitationCode("abcdef");
-		test.setHeadImgPath("");
-		test.setLastLoginTime("2015-06-02");
-		req.getSession().setAttribute(Globals.SESSION_USER_INFO, test);
-		return "forward:/home/home";
+//		test.setLoginType("0");
+//		test.setIpAddress("127.0.0.1");
+//		test.setInvitationCode("abcdef");
+//		test.setHeadImgPath("");
+//		test.setLastLoginTime("2015-06-02");
+//		req.getSession().setAttribute(Globals.SESSION_USER_INFO, test);
+//		return "credit/main";
 		//debug end
 		
-//		User result = loginService.checkUser(loginInfo);
-//		
-//		if (result != null) {
-//			req.getSession().setAttribute(Globals.SESSION_USER_INFO, result);
-//			return "credit/main";
-//		} else {
-//			model.addAttribute("checkMessage", "账户或密码不正确！");
-//			
-//			User user = new User();
-//			user.setTelPhone(loginInfo.getTelPhone());
-//			model.addAttribute("loginInfo", user);
-//			
-//			return "forward:home/home";
-//		}
+		User result = loginService.checkUser(loginInfo);
+		
+		if (result != null) {
+			req.getSession().setAttribute(Globals.SESSION_USER_INFO, result);
+			return "forward:/home/home";
+		} else {
+			model.addAttribute("checkMessage", "账户或密码不正确！");
+			
+			User user = new User();
+			user.setTelPhone(loginInfo.getTelPhone());
+			model.addAttribute("loginInfo", user);
+			
+			return "credit/login";
+		}
 	}
 
 	/**
@@ -181,13 +186,26 @@ public class LoginController {
 	@RequestMapping(value="/register/credit/submit",method=RequestMethod.POST)
 	public String registerSubmit(HttpServletRequest request,Model model,User registerInfo) {
 		
-		
 		boolean result = loginService.saveUser(registerInfo);
 		
 		if (result) {
-			return "credit/main";
+			//add by lzc 返回地址修改并增加session
+			
+			request.getSession().setAttribute(Globals.SESSION_USER_INFO, registerInfo);
+			return "forward:/home/home";
+			//end lzc
 		}else {
 			model.addAttribute("registerInfo", registerInfo);
+			//add by lzc
+			//省
+			List<SelectInfo> provinces = selectService.findProvince();
+			model.addAttribute("provinces", provinces);
+			
+			//机构
+			List<SelectInfo> organizations = organizationService.getOrganizations();
+			model.addAttribute("organizations", organizations);
+			//end
+			
 			return "credit/register";
 		}
 	}

@@ -13,7 +13,7 @@ import com.xinyue.manage.util.CommonFunction;
  */
 public interface UserService {
 
-	public User getUserById(Long id);
+	public User getUserById(String id);
 	
 	public boolean saveUser(User user , String loginName);
 	

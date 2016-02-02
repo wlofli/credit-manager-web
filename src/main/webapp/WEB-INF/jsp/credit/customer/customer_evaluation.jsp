@@ -8,6 +8,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>信贷经理_客户管理_客户评价</title>
 <%@ include file="../../commons/common.jsp"%>
+<script type="text/javascript">
+$(function(){
+	
+	$("div.left li").each(function(){
+		$(this).removeClass("hit");
+	});
+	$("a.kh").parent().addClass("hit");
+	$("a.kh").parent().children().find("li").eq(1).addClass("hit");
+	
+});
+
+</script>
 </head>
 <body>
 	<div class="main">

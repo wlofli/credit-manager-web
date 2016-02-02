@@ -22,9 +22,7 @@ import com.xinyue.manage.beans.PageData;
 @Controller
 public class PageController {
 
-	static{
-		System.out.println("111111331111111112211111111111");
-	}
+	
 	@RequestMapping("/page")
 	public String page(Model model , HttpServletRequest req){
 		String topage = req.getParameter("topage");

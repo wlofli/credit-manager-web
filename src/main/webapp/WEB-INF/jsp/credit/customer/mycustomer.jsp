@@ -14,6 +14,17 @@
 <%@ include file="../../commons/common.jsp"%>
 </head>
 <script>
+$(function(){
+	
+// 	$("div.left li").each(function(){
+// 		$(this).removeClass("hit");
+// 	});
+	$("a.kh").parent().addClass("hit");
+	$("a.kh").parent().children().find("li").eq(0).addClass("hit");
+	
+});
+
+
 function fastsearch(n){
 	$("#status").val(n);
 	window.location.href='${ctx }/order/mycustomer?status=' + n;
@@ -77,7 +88,7 @@ function sub(){
 </div>
 </div>
 <div class="news_nr">
-<p>未能查找到您想要的结果，请确认您的搜索条件正确，或<a href="#">点此查看全部订单></a></p>
+<p>未能查找到您想要的结果，请确认您的搜索条件正确，或<a href="javascript:void(0)" onclick="document.location.href='${ctx}/order/mycustomer'">点此查看全部订单></a></p>
 </div>
 <div class="news_nr"> 
 <table class="tjhy_table" cellpadding="0" cellspacing="0">
@@ -108,7 +119,7 @@ function sub(){
 <td colspan="1">${list.credit }</td>
 <td colspan="1">${list.limitDate }</td>
 <td colspan="2">${list.companyName }</td>
-<td colspan="2"><fmt:formatDate value="${list.applicantTime }" pattern="yyyy-MM-dd h:m"/></td>
+<td colspan="2"><fmt:formatDate value="${list.applicantTime }" pattern="yyyy-MM-dd H:m"/></td>
 <td colspan="2">${list.orderType }</td>
 <td colspan="2">${list.status }</td>
 <td colspan="2"><a href="${ctx }/order/customer/track?id=${list.id}&type=${list.type}" class="m_r_10">查看</a></td>

@@ -7,9 +7,9 @@
 	<ul>
 		<li class="logo bj0"><img src="${ctx }/images/logo.png" onclick="window.open('')" /></li>
 		<li class="bj0"><span>信贷经理中心</span></li>
-		<li class="hit"><a class="zy" id="a">我的主页</a>
+		<li ><a class="zy" id="a">我的主页</a>
 			<ul class="fnav">
-				<li class="hit"><a href="javascript:void(0)" onclick="document.location.href='${ctx}/home/home'">我的主页</a></li>
+				<li ><a href="javascript:void(0)" onclick="document.location.href='${ctx}/home/home'">我的主页</a></li>
 			</ul></li>
 		<li><a class="zh" id="a">账户管理</a>
 			<ul class="fnav">
@@ -17,33 +17,31 @@
 				<li><a href="javascript:void(0)" onclick="commit('me')">我的消息</a></li>
 				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/memberctr/find'">分享推荐会员</a></li>
 				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/user/detail/list'">资金管理</a></li>
-				<li><a href="#">积分管理</a></li>
+<!-- 				<li><a href="#">积分管理</a></li> -->
 			</ul></li>
-		<li><a class="cp" id="a">产品推广</a>
-			<ul class="fnav">
-				<li><a href="#">产品推广</a></li>
-			</ul></li>
-		<li><a class="xx" id="a">信息查询</a>
-			<ul class="fnav">
-				<li><a href="#">企业信息下载明细</a></li>
-				<li><a href="#">人员信息下载明细</a></li>
-				<li><a href="#">企业投资信息下载明细</a></li>
-			</ul></li>
+<!-- 		<li><a class="cp" id="a">产品推广</a> -->
+<!-- 			<ul class="fnav"> -->
+<!-- 				<li><a href="#">产品推广</a></li> -->
+<!-- 			</ul></li> -->
+<!-- 		<li><a class="xx" id="a">信息查询</a> -->
+<!-- 			<ul class="fnav"> -->
+<!-- 				<li><a href="#">企业信息下载明细</a></li> -->
+<!-- 				<li><a href="#">人员信息下载明细</a></li> -->
+<!-- 				<li><a href="#">企业投资信息下载明细</a></li> -->
+<!-- 			</ul></li> -->
 		<li><a class="kh" id="a">客户管理</a>
 			<ul class="fnav">
 				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/order/mycustomer'">我的客户</a></li>
-				<li><a href="#">推送客户</a></li>
-				<li><a href="#">领取客户</a></li>
-				<li><a href="${ctx}/credit/customer/evaluation">客户评价</a></li>
+				<li><a href="${ctx}/customer/evaluation">客户评价</a></li>
 			</ul></li>
 		<li><a class="hq" id="a">获取客户</a>
 			<ul class="fnav">
 				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/order/appointlist'">推送客户</a></li>
 				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/order/fixlist'">立即领取</a></li>
-				<li><a href="javascript:void(0)" >竞拍客户</a></li>
-				<li><a href="#">唯一低价</a></li>
-				<li><a href="#">我的出价</a></li>
-				<li><a href="#">我的客户</a></li>
+<!-- 				<li><a href="javascript:void(0)" >竞拍客户</a></li> -->
+<!-- 				<li><a href="#">唯一低价</a></li> -->
+<!-- 				<li><a href="#">我的出价</a></li> -->
+<!-- 				<li><a href="#">我的客户</a></li> -->
 			</ul></li>
 		<li><a class="wd" id="a">客户问答</a>
 			<ul class="fnav">
@@ -53,7 +51,7 @@
 			</ul></li>
 		<li><a class="al" id="a" >成功案例</a>
 			<ul class="fnav">
-				<li><a href="#" onclick="document.location.href='${ctx}/credit/case/list'">成功案例</a></li>
+				<li><a href="javascript:void(0)" onclick="document.location.href='${ctx}/credit/case/list'">成功案例</a></li>
 			</ul></li>
 		<li><a class="bz" id="a">帮助中心</a>
 			<ul class="fnav">
@@ -88,7 +86,6 @@ $(function(){
 			$("div.left li").each(function(){
 				$(this).removeClass("hit");
 			});
-			
 		}else{
 			$("div.left li").each(function(){
 				$(this).removeClass("hit");

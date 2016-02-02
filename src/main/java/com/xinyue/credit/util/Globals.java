@@ -16,6 +16,11 @@ public class Globals {
 	//add by lzc
 	public static final String REDIRECT = "/home/redirect";
 	
+	public static final String SESSION_MESSAGE_UNREAD = "unread";
+	
+	//add by lzc
+	public static final String CERTIFICATION_PHONE_CODE = "certification_phone_code";
+	
 	public static final String SESSION_PHONE_CODE = "session_phone_code";
 	
 	//add by maozj start

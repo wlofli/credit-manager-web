@@ -21,6 +21,19 @@ $(function(){
 	$("a.wd").parent().children().find("li").eq(0).addClass("hit");
 	
 });
+
+
+
+
+function changePage(url , topage){
+	var totalpage = $("#help_totalPage").val();
+	if(topage>totalpage){
+		alert("所写页码大于总页码了, 当前总页码为"+totalpage);
+		return;
+	}
+	var uri = url+topage;
+	document.location.href=uri;
+}
 </script>
 </head>
 <body>
@@ -50,9 +63,9 @@ $(function(){
 								<s:hidden path="questid" value="${question.id }"/>
 								<p class="tjda">
 									<input type="button" value="提交答案" class="tjda_btn" onclick="saveAnswer('${question.id}')"/>
-									<s:hidden path="createid" id="answer_createid_${question.id} }"/>
+									<s:hidden path="createid" id="answer_createid_${question.id}"/>
 									<span class="tjda_span">匿名</span>
-									<input type="checkbox" onclick="javascript:$('#answer_createid_${quest.id }').val(this.checked?'0':'${answer.createid }')" class="tjda_fxk"/>
+									<input type="checkbox" onclick="javascript:$('#answer_createid_${question.id }').val(this.checked?'0':'${answer.createid }')" class="tjda_fxk"/>
 									<div class="clear"></div>
 								</p>
 							</s:form>
@@ -67,12 +80,26 @@ $(function(){
 									<c:forEach items="${pageanswer.data }" var="panswer">
 									<li>
 										<p class="wt1">
-											<c:if test="${panswer.atype eq 'c' }" var="flags">
-												<a class="hdz" href="#">${panswer.ccreateName }</a><span class="hdzsf">信贷经理</span>
-											</c:if>
-											<c:if test="${not flags }">
-												<a class="hdz" href="#">${panswer.mcreateName }</a><span class="hdzsf">普通会员</span>
-											</c:if>|<span
+											<c:choose>
+												<c:when test="${panswer.atype eq 'c' }">
+													<a class="hdz" href="#">${panswer.ccreateName }</a><span class="hdzsf">信贷经理</span>
+												</c:when>
+												<c:when test="${panswer.atype eq 'm' }">
+													<a class="hdz" href="#">${panswer.mcreateName }</a><span class="hdzsf">普通会员</span>
+												</c:when>
+												<c:otherwise>
+													<a class="hdz" href="#"></a><span class="hdzsf">匿名</span>
+												</c:otherwise>
+											</c:choose>
+<%-- 											<c:if test="${panswer.atype eq 'c' }" var="flags"> --%>
+<%-- 												<a class="hdz" href="#">${panswer.ccreateName }</a><span class="hdzsf">信贷经理</span> --%>
+<%-- 											</c:if> --%>
+<%-- 											<c:if test="${not flags }"> --%>
+<%-- 												<a class="hdz" href="#">${panswer.mcreateName }</a><span class="hdzsf">普通会员</span> --%>
+<%-- 											</c:if> --%>
+											
+											
+											|<span
 												class="fwly">服务地区：${panswer.address }</span>|<span class="fwly">服务机构：${panswer.oname }</span><span
 												class="hdsj">${panswer.atime }</span>
 										</p>
@@ -85,7 +112,7 @@ $(function(){
 
 					</div>
 					<p:page url="${ctx }/credit/answerctr/showAnswer?index=1&questid=${question.id }" pageData="${pageanswer}"></p:page>
-
+					<input type="hidden" value="${pageanswer.totalPage }" id="help_totalPage">
 				</div>
 
 			</div>

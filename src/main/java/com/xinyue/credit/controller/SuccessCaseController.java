@@ -1,5 +1,6 @@
 package com.xinyue.credit.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -117,10 +118,12 @@ public class SuccessCaseController {
 		
 		//产品
 		List<SelectInfo> products = productService.findProductsManagerId(user.getId());
+
 		model.addAttribute("products", products);
 		
 		//贷款类型
 		List<SelectInfo> loanTypes = selectService.findSelectByType(GlobalConstant.LOAN_TYPE);
+		
 		model.addAttribute("loanTypes", loanTypes);
 		
 		//省
@@ -137,23 +140,27 @@ public class SuccessCaseController {
 			model.addAttribute("type", "编辑");
 		}
 		
+		
 		model.addAttribute("caseInfo", sc);
 		return "credit/case/success_case_edit";
 	}
 	
+	
+	//modified by lzc 方法改成@responsebody形式
 	@RequestMapping(value="/case/save",method=RequestMethod.POST)
+	@ResponseBody
 	public String saveCase(HttpServletRequest request,Model model,SuccessCase caseInfo) {
 		User user = (User) request.getSession().getAttribute(
 				Globals.SESSION_USER_INFO);
 		caseInfo.setCreditManagerId(user.getId());
+		caseInfo.setCreditManagerName(user.getRealName());
 		
 		boolean result = successCaseService.saveCase(caseInfo);
 		
 		if (result) {
-			model.addAttribute("type", "编辑");
-			model.addAttribute("caseInfo", caseInfo);
+			return GlobalConstant.RET_SUCCESS;
 		}
-		return "credit/case/success_case_edit";
+		return GlobalConstant.RET_FAIL;
 	}
 
 	/**

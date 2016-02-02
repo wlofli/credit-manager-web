@@ -59,13 +59,13 @@ $(function(){
 				<div class="grzx_nr2">
 					<s:form action="${ctx}/credit/psw/submit" commandName="pswInfo" method="post" id="pswForm">
 					<p>
-						<span>原密码 :</span><s:input path="password" class="grzl_t1"/>
+						<span>原密码 :</span><s:password path="password" class="grzl_t1"/>
 					</p>
 					<p>
-						<span>新密码 :</span><s:input path="passwordConfirm" class="grzl_t1"/>
+						<span>新密码 :</span><s:password path="passwordConfirm" class="grzl_t1"/>
 					</p>
 					<p>
-						<span>确认密码 :</span><input type="text" class="grzl_t1" name="passwordCheck" />
+						<span>确认密码 :</span><input type="password" class="grzl_t1" name="passwordCheck" />
 					</p>
 					<p>
 						<input type="button" class="save_btn" value="修改" onclick="change()" />
@@ -83,6 +83,7 @@ function change(){
 	
 	if ($("#pswForm").valid()) {
 		$.ajax({
+		    data:$("#pswForm").serialize(),
 			url:"${ctx}/credit/psw/submit",
 			type:"post",
 			success:function(data){

@@ -11,6 +11,8 @@ import com.xinyue.credit.dao.LoginDAO;
 import com.xinyue.credit.model.User;
 import com.xinyue.credit.service.LoginService;
 import com.xinyue.credit.util.SecurityUtils;
+import com.xinyue.manage.dao.RewardDAO;
+import com.xinyue.manage.model.OutLine;
 
 /**
  * 登录相关服务层
@@ -18,11 +20,18 @@ import com.xinyue.credit.util.SecurityUtils;
  * @version v1.0
  * @date 创建时间：2015年7月1日
  */
+/**
+ * lzc saveUser() 添加初始化资金总表
+ *
+ */
 @Service
 public class LoginserviceImpl implements LoginService {
 
 	@Resource
 	private LoginDAO loginDAO;
+	
+	@Resource
+	private RewardDAO rewardDAO;
 	
 	private Logger log = Logger.getLogger(LoginserviceImpl.class);
 	
@@ -72,6 +81,13 @@ public class LoginserviceImpl implements LoginService {
 			int result = loginDAO.saveUser(user);
 			
 			if (result > 0) {
+				//add by lzc
+				OutLine outLine = new OutLine();
+				outLine.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+				outLine.setUserId(user.getId());
+				outLine.setUserType("c");
+				rewardDAO.initOutline(outLine);
+				//end
 				return true;
 			}
 			

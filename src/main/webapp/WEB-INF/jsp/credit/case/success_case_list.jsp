@@ -8,6 +8,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>信贷经理_成功案例</title>
 <%@ include file="../../commons/common.jsp"%>
+<script type="text/javascript">
+$(function(){
+	
+	$("div.left li").each(function(){
+		$(this).removeClass("hit");
+	});
+	$("a.al").parent().addClass("hit");
+	$("a.al").parent().children().find("li").eq(0).addClass("hit");
+	
+});
+</script>
 </head>
 <body>
 	<div class="main">
@@ -55,23 +66,23 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${successCases}" var="case" varStatus="vs">
+								<c:forEach items="${successCases}" var="cases" varStatus="vs">
 								<tr>
 									<td colspan="1">
 										<input type="checkbox" class="cgal_c1" name="checkIndex" id="cb_${vs.index}"/>
 									</td>
 									<td colspan="2">${vs.index+1+(mpage.currentPage-1)*10}</td>
-									<td colspan="2">${case.productName}</td>
-									<td colspan="2">${case.applicantCompany}</td>
-									<td colspan="2">${case.loanType}</td>
-									<td colspan="2">${case.loanAmount}</td>
-									<td colspan="3">${case.loanDate}</td>
-									<td colspan="2">${case.loanPeriod}</td>
-									<td colspan="2">${case.loanDays}</td>
-									<td colspan="2">${case.loanProvince}${case.loanCity}</td>
+									<td colspan="2">${cases.productName}</td>
+									<td colspan="2">${cases.applicantCompany}</td>
+									<td colspan="2">${cases.loanType}</td>
+									<td colspan="2">${cases.loanAmount}</td>
+									<td colspan="3">${cases.loanDate}</td>
+									<td colspan="2">${cases.loanPeriod}</td>
+									<td colspan="2">${cases.loanDays}</td>
+									<td colspan="2">${cases.loanProvince}${cases.loanCity}</td>
 									<td colspan="3">
-										<a href="javascript:void(0);" class="edit_btn" onclick="edit('${case.id}')">编辑</a>
-										<a href="javascript:void(0);" class="del_btn" onclick="del('${case.id}')">删除</a>
+										<a href="javascript:void(0);" class="edit_btn" onclick="edit('${cases.id}')">编辑</a>
+										<a href="javascript:void(0);" class="del_btn" onclick="del('${cases.id}')">删除</a>
 									</td>
 								</tr>
 								</c:forEach>

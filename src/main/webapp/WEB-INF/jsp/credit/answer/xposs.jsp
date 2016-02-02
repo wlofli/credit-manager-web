@@ -12,34 +12,33 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%@ include file="../../commons/common.jsp"  %>
 <script type="text/javascript">
-	$(function() {
-		$(".khwd_list ul .khwd_li").click(function() {
-			$(this).find('#tck').removeClass("menu_chioce");
-			$(".menu_chioce").slideUp();
-			$(this).find('#tck').slideToggle();
-			$(this).find('#tck').addClass("menu_chioce");
-		});
+$(function(){
+	$(".khwd_list ul .khwd_li .khwd_li_bt").click(function(){ 
+		$(this).parent().find('#tck').removeClass("menu_chioce");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('#tck').slideToggle();
+		$(this).parent().find('#tck').addClass("menu_chioce");
 	});
-	
-	$(function() {
-		$(".khwd_list ul .khwd_li #tck .hdwt_nr1 .yc_wt_tck").click(function() {
-			$(this).parent().removeClass("menu_chioce");
-			$(".menu_chioce").slideUp();
-			$(this).parent().slideToggle();
-			$(this).parent().addClass("menu_chioce");
-		});
+})
+$(function(){
+	$(".khwd_list ul .khwd_li #tck .hdwt_nr1 .yc_wt_tck").click(function(){ 
+		$(this).parent().parent().removeClass("menu_chioce");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().parent().slideToggle();
+		$(this).parent().parent().addClass("menu_chioce");
 	});
-	
+}) 
 
-	$(function(){
-		
-		$("div.left li").each(function(){
-			$(this).removeClass("hit");
-		});
-		$("a.wd").parent().addClass("hit");
-		$("a.wd").parent().children().find("li").eq(0).addClass("hit");
-		
+
+$(function(){
+	
+	$("div.left li").each(function(){
+		$(this).removeClass("hit");
 	});
+	$("a.wd").parent().addClass("hit");
+	$("a.wd").parent().children().find("li").eq(0).addClass("hit");
+	
+});
 </script>
 </head>
 <body>
@@ -57,15 +56,35 @@
 							<span class="wdbt">我的回答：</span>
 							<ul>
 								<li><span>待审核<br />
-									<strong>${myanswer.verify }</strong></span></li>
+									<strong>
+									<c:choose>
+										<c:when test="${empty myanswer.verify }">0</c:when>
+										<c:otherwise>${myanswer.verify }</c:otherwise>
+									</c:choose>
+									</strong></span></li>
 								<li><span>审核通过<br />
-									<strong>${myanswer.pass }</strong></span></li>
+									<strong>
+									<c:choose>
+										<c:when test="${empty myanswer.pass }">0</c:when>
+										<c:otherwise>${myanswer.pass }</c:otherwise>
+									</c:choose>
+									</strong></span></li>
 								<li><span>未通过<br />
-									<strong>${myanswer.fail }</strong></span></li>
+									<strong>
+									<c:choose>
+										<c:when test="${empty myanswer.fail }">0</c:when>
+										<c:otherwise>${myanswer.fail }</c:otherwise>
+									</c:choose>
+									</strong></span></li>
 								<li><span>通过率<br />
-									<strong>${myanswer.rate }%</strong></span></li>
+									<strong>
+									<c:choose>
+										<c:when test="${empty myanswer.rate }">0</c:when>
+										<c:otherwise>${myanswer.rate }</c:otherwise>
+									</c:choose>
+									%</strong></span></li>
 								<li class="wd_n_bj"><span>获得积分<br />
-									<strong>132</strong></span></li>
+									<strong>待完善</strong></span></li>
 								<div class="clear"></div>
 							</ul>
 						</div>
@@ -73,11 +92,21 @@
 							<span class="wdbt">最近回答：</span>
 							<ul>
 								<li><span>昨日回答<br />
-									<strong>${recentanswer.yesterday }</strong></span></li>
+									<strong>
+									<c:choose>
+										<c:when test="${empty recentanswer.yesterday  }">0</c:when>
+										<c:otherwise>${recentanswer.yesterday }</c:otherwise>
+									</c:choose>
+									</strong></span></li>
 								<li><span>今日排名<br />
 									<strong>${recentanswer.rank }</strong></span></li>
 								<li class="wd_n_bj"><span>今日回答<br />
-									<strong>${recentanswer.today }</strong></span></li>
+									<strong>
+										<c:choose>
+											<c:when test="${empty recentanswer.today}">0</c:when>
+											<c:otherwise>${recentanswer.today }</c:otherwise>
+										</c:choose>
+									</strong></span></li>
 								<div class="clear"></div>
 							</ul>
 						</div>
@@ -101,10 +130,11 @@
 							<ul>
 								<c:forEach items="${poss.data }" var="quest">
 									<li class="khwd_li" onmouseover="style.background='#eee'"
-										onmouseout="style.background='none'"><i class="jljftb"></i>
+										onmouseout="style.background='none'">
+										<div class="khwd_li_bt"><i class="jljftb"></i>
 										<span class="jljfsz">+5分</span> <a class="wd_bt" href="javascript:void(0)" onclick="xtarget(event , '${quest.id}')" id="wdbt">${quest.title }</a>
 										<span class="twsj">${quest.createtime }</span> <span class="hdgs">${quest.answerNum }个回答</span>
-										<div class="clear"></div>
+										<div class="clear"></div></div>
 										<div class="hdwt_tck" id="tck">
 											<div class="hdwt_nr1">
 												<span class="wt_ms">提问者：<strong><c:if test="${quest.questType eq 'm' }" var="flag">普通会员</c:if><c:if test="${not flag }">信贷经理</c:if></strong></span><a
@@ -117,7 +147,7 @@
 														<s:textarea path="acontent" class="hdwt_textarea1"/>
 													</p>
 													<p class="nm_p">
-														<s:hidden path="createid" id="answer_createid_${quest.id} }"/>
+														<s:hidden path="createid" id="answer_createid_${quest.id}"/>
 														<input type="checkbox" onclick="javascript:$('#answer_createid_${quest.id }').val(this.checked?'0':'${answer.createid }')" class="nmhdwt_c1"/><span>匿名回答</span>
 													</p>
 													<p class="nm_p">

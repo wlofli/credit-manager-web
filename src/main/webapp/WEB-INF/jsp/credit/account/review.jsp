@@ -49,7 +49,7 @@ $(function(){
 				<div class="grzx_nr">
 					<div class="grzx_nr1">
 						<ul>
-							<li><a href="javascript:void(0)">个人资料</a></li>
+							<li><a href="javascript:void(0)" onclick="convert('p')">个人资料</a></li>
 							<li><a href="javascript:void(0)" class="hit">实名认证</a></li>
 						</ul>
 					</div>

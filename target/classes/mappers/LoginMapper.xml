@@ -65,6 +65,9 @@
 		from
 		    c_manager_info
 		where
+<!-- 			add by lzc添加删除位与启用位 -->
+			deleted = 0 and status = 0 and
+<!-- 			end -->
 		    tel_number = #{tel} and login_password = #{psw};
 	</select>
 	

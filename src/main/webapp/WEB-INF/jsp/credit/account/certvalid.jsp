@@ -10,6 +10,16 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%@ include file="../../commons/common.jsp"  %>
 <script type="text/javascript">
+$(function(){
+	
+	$("div.left li").each(function(){
+		$(this).removeClass("hit");
+	});
+	$("a.zh").parent().addClass("hit");
+	$("a.zh").parent().children().find("li").eq(0).addClass("hit");
+	
+});
+
 function convert(t){
 	
 	if(t == 'p'){
@@ -21,9 +31,13 @@ function convert(t){
 	}
 	
 }
+
 </script>
 </head>
 <body>
+	<s:form action="" method="post" id="person_center_convert">
+		<input type="hidden" name="index" id="person_index" value="0">
+	</s:form>
 	<div class="main">
 		<jsp:include page="../../commons/left.jsp"></jsp:include>
 
@@ -33,6 +47,7 @@ function convert(t){
 				<div class="grzx_bt">
 					<span>个人中心</span>
 				</div>
+
 				<div class="grzx_nr">
 					<div class="grzx_nr1">
 						<ul>
@@ -67,9 +82,9 @@ function convert(t){
 							<span><i></i>机构地址 :</span><span class="rzcg_s">${cert.organizationAdressString }</span>
 						</p>
 						<ul class="zjzl">
-							<li><img src="${showpath }credit/person/card/${cert.cardImgPath}" /><span>有效身份证</span></li>
-							<li><img src="${showpath }credit/person/work/${cert.workImgPath}" /><span>工作证</span></li>
-							<li><img src="${showpath }credit/person/head/${cert.headImgPath}" /><span>近半身职业照</span></li>
+							<li><img src="${showpath }credit/person/card/${cert.cardImgPath}" style="width:164px; height:105px;"  /><span>有效身份证</span></li>
+							<li><img src="${showpath }credit/person/work/${cert.workImgPath}" style="width:164px; height:105px;"  /><span>工作证</span></li>
+							<li><img src="${showpath }credit/person/head/${cert.headImgPath}" style="width:164px; height:105px;"  /><span>近半身职业照</span></li>
 						</ul>
 
 					</div>

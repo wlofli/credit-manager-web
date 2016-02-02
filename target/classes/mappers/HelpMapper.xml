@@ -4,13 +4,15 @@
 	<select id="findPageList" resultType="com.xinyue.credit.model.HelpModel">
 		select * from m_assist_info a 
 		left join m_help_type h on a.type = h.id 
-		where deleted = 0 and h.id = #{id} limit #{start} , #{pageSize}
+<!-- 		add by lzc deleted -> a.deleted -->
+		where a.deleted = 0 and h.id = #{id} limit #{start} , #{pageSize}
 	</select>
 	
 	<select id="getCount" resultType="int">
 		select count(*) from m_assist_info a 
 		left join m_help_type h on a.type = h.id 
-		where deleted = 0 and h.id = #{id}
+<!-- 		add by lzc deleted -> a.deleted -->
+		where a.deleted = 0 and h.id = #{id}
 	</select>
 	
 	<select id="findHelpById" resultType="com.xinyue.credit.model.HelpModel">

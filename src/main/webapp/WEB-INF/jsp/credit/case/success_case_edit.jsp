@@ -129,7 +129,20 @@ function getCities(val){
 }
 function saveCase(){
 	if ($("#caseForm").valid()) {
-		$("#caseForm").submit();
+		$.ajax({
+			   url:"${ctx}/credit/case/save",
+			   type:"post",
+			   data:$("#caseForm").serialize(),
+			   async:true,
+			   success:function(data){
+			    if(data == "success"){
+				   alert("${type}成功");
+				   window.location.href = "${ctx}/credit/case/list";
+			   }else{
+				   alert("${type}失败");
+			   }
+			   }
+			});
 	}
 }
 </script>

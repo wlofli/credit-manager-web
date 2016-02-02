@@ -49,9 +49,6 @@ function changePage(url , topage){
 </div>
 <div class="grzx_nr">
 <%@include file="fundHead.jsp" %>
-<!-- <span>开始时间：</span><input type="text" class="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" /> -->
-<!-- <span>结束时间：</span><input type="text" class="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /> -->
-<!-- <input type="button"  class="search_btn" value="查询"/></div> -->
 <div class="news_nr"> 
 <table class="tjhy_table" cellpadding="0" cellspacing="0">
 <thead>

@@ -11,7 +11,17 @@
 <link href="${ctx}/css/base.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="${ctx}/js/star.js"></script>
 <script type="text/javascript" src="${ctx}/js/jquery-1.9.0.min.js"></script>
-
+<script type="text/javascript">
+$(function(){
+	
+	$("div.left li").each(function(){
+		$(this).removeClass("hit");
+	});
+	$("a.zy").parent().addClass("hit");
+	$("a.zy").parent().children().find("li").eq(0).addClass("hit");
+	
+});
+</script>
 </head>
 <body>
 <div class="main">

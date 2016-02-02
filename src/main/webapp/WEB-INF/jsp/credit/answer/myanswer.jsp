@@ -21,6 +21,16 @@ $(function(){
 	$("a.wd").parent().children().find("li").eq(2).addClass("hit");
 	
 });
+
+function changePage(url , topage){
+	var totalpage = $("#help_totalPage").val();
+	if(topage>totalpage){
+		alert("所写页码大于总页码了, 当前总页码为"+totalpage);
+		return;
+	}
+	var uri = url+topage;
+	document.location.href=uri;
+}
 </script>
 </head>
 <body>
@@ -54,7 +64,7 @@ $(function(){
 						</div>
 					</div>
 					<p:page url="${ctx }/credit/answerctr/myanswer" pageData="${myanswer}"></p:page>
-
+					<input type="hidden" value="${myanswer.totalPage }" id="help_totalPage">
 				</div>
 
 			</div>

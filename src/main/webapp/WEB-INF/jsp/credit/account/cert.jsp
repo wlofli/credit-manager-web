@@ -9,6 +9,8 @@
 <title>信贷经理-个人中心-实名认证</title>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%@ include file="../../commons/common.jsp"  %>
+<link href="${ctx}/css/base.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="${ctx}/js/checkcode.js"></script>
 <script type="text/javascript">
 function convert(t){
 
@@ -93,8 +95,8 @@ $(function(){
 						</p>
 						<p>
 							<span><i></i>手机验证 :</span>
-							<input type="button" class="smrz_btn1"
-								value="获取手机验证码" /><input type="text" class="smrz_t1" />
+							<input type="button" class="smrz_btn1"	id="code_btn" value="获取手机验证码" onclick="sendCode(telPhone,'certification/code/send?phone=')"/>
+							<input id="checkCode" name="checkCode" type="text" class="smrz_t1 required" />
 						</p>
 						<p>
 							<span><i></i>所属机构 :</span>
@@ -110,7 +112,7 @@ $(function(){
 									<s:option value="">请选择</s:option>
 									<s:options items="${province }" itemLabel="value" itemValue="key" />
 								</s:select>
-								<s:select path="city" class="grzl_s1" id="person_city" required="true">
+								<s:select path="city" class="grzl_s1" id="person_city" name="city" required="true">
 									<s:option value="">请选择</s:option>
 								</s:select>
 								<s:hidden path="citys" id="person_citys"/>
@@ -144,10 +146,35 @@ $(function(){
 	
 		$(function(){
 			$("#person_cert").validate({
+				rules: {
+					city:"required",
+					checkCode:{
+						required:true,
+						remote:{
+		                    type: "post",
+		                    url:"${ctx}/credit/user/certification/code/check",
+		                    data:{
+		                    	checkCode: function(){return $("#checkCode").val();}
+		                    }
+						}
+					}
+				},
+				messages: {
+					city:"<span class='zc_zs'>* 请选择所在地区</span>",
+					checkCode:{
+						remote:"<span class='zc_zs'>* 手机验证码错误</span>"
+					}
+				},
+				
+				
+				
 				errorPlacement: function(error, element) {
 					error.appendTo(element.parent());
 				},
 			});
+			
+			
+			
 		});
 		
 		function changeSelect(val){

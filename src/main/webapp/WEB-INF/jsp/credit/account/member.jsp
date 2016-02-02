@@ -81,8 +81,6 @@ function sendEmail(node){
 			alert("邮件格式不对");
 			return;
 		}
-		alert(htl);
-		return;
 		$("#recommend_member_link").val(htl);
 		$.ajax({
 			url:'${ctx}/credit/memberctr/emailMember',
@@ -155,13 +153,15 @@ function sendEmail(node){
 								</p>
 								<p class="tjhy_p">
 									<span class="tjhy_bt">推荐普通会员数：</span><span class="tjhy_sl"><strong>${member.ordinaryNum }</strong>人</span>
-									<a href="javascript:void(0)" class="ckxq"> 查看详情> </a>
+									<a href="${ctx }/credit/user/recommend/member"  class="ckxq"> 查看详情> </a>
 								</p>
+								<%-- 
 								<p class="tjhy_p">
 									<span class="tjhy_bt">推荐奖励：</span><a href="tjhy_lb1.html"
 										class="ckxq"><strong>30 </strong> 分 </a><a href="tjhy_lb1.html"
 										class="ckxq"><strong>10 </strong> 元 </a>
 								</p>
+								--%>
 							</s:form>
 						</div>
 
@@ -185,14 +185,15 @@ function sendEmail(node){
 								</p>
 								<p class="tjhy_p">
 									<span class="tjhy_bt">推荐信贷经理数：</span><span class="tjhy_sl"><strong>${credit.creditNum }</strong>人</span>
-									<a href="tjhy_lb.html" class="ckxq"> 查看详情> </a>
+									<a href="${ctx }/credit/user/recommend/manager" class="ckxq"> 查看详情> </a>
 								</p>
+								<%-- 
 								<p class="tjhy_p">
 									<span class="tjhy_bt">推荐奖励：</span><a href="tjhy_lb1.html"
 										class="ckxq"><strong>30 </strong> 分 </a><a href="tjhy_lb1.html"
 										class="ckxq"><strong>10 </strong> 元 </a>
 								</p>
-
+								--%>
 							</s:form>
 						</div>
 						<div class="clear"></div>

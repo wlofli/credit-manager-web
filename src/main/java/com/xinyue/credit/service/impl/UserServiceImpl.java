@@ -32,13 +32,13 @@ public class UserServiceImpl implements UserService {
 	
 	private Logger logger = Logger.getLogger(UserServiceImpl.class);
 	@Override
-	public User getUserById(Long id) {
+	public User getUserById(String id) {
 		// TODO Auto-generated method stub
 		User user =  udao.getUserById(id);
 //		String location = user.getLocation();
 //		user.setProvince(new StringBuffer(location.substring(0, 2)).append("0000").toString());
 //		user.setCity(location);
-		user.setCitys(user.getCity());
+//		user.setCitys(user.getCity());
 		return user;
 	}
 	
@@ -104,6 +104,8 @@ public class UserServiceImpl implements UserService {
 		if (!pathFile.exists()) {
 			pathFile.mkdirs();
 		}
+		System.out.println("tempcard = " + tempcard);
+		System.out.println("realcard = " + realcard);
 		File tempFile =  new File(tempcard);
 		File realFile =  new File(realcard);
 		
@@ -119,12 +121,19 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		String loginName = u.getTelPhone();
 		try {
+			//modified by lzc   增加了判空标志
 			String card = user.getCardImgPath();
-			move("card/" , card);
+			if(!card.isEmpty()){
+				move("card/" , card);
+			}
 			String head = user.getHeadImgPath();
-			move("head/" , head);
+			if(!head.isEmpty()){
+				move("head/" , head);
+			}
 			String work = user.getWorkImgPath();
-			move("work/" , work);
+			if(!work.isEmpty()){
+				move("work/" , work);
+			}
 			udao.updateCertImg(user);
 			logger.info("上传认证信息修改成功 , 修改者为:"+loginName);
 			return true;
@@ -203,6 +212,11 @@ public class UserServiceImpl implements UserService {
 	public boolean updateAudit(String id, String loginName) {
 		// TODO Auto-generated method stub
 		try {
+			//add by lzc 添加文件检查机制
+			if (!isFullOfFile(id)) {
+				logger.info("用户文件未提交完全");
+				return false;
+			}
 			int s = udao.updateAudit(id);
 			if(s == 1){
 				logger.info("提交审核成功 ,提交者:"+loginName);
@@ -212,6 +226,7 @@ public class UserServiceImpl implements UserService {
 			return false;
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			logger.info("提交审核失败 ,提交者:"+loginName);
 			return false;
 		}
@@ -233,5 +248,20 @@ public class UserServiceImpl implements UserService {
 			logger.info("修改审核状态失败 ,提交者:"+loginName);
 			return false;
 		}
+	}
+	
+	/**检查用户文件是否齐全
+	 * add by lzc     date: 2015年11月11日
+	 * @param id
+	 * @return
+	 */
+	private boolean isFullOfFile(String id){
+		User user = udao.getFilePathByCertId(id);
+		if(user == null) return false;
+		if (user.getHeadImgPath().isEmpty() || user.getCardImgPath().trim().isEmpty() || user.getWorkImgPath().isEmpty()) {
+			return false;
+		}
+		return true;
+		
 	}
 }

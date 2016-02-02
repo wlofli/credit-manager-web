@@ -102,10 +102,31 @@ public class OrderController {
 			if(orderCustomerService.saveOrderFixed(fixId, user.getId(), user.getId())){
 				jsonObject.accumulate(GlobalConstant.RET_JSON_RESULT, GlobalConstant.RET_SUCCESS);
 			}else {
+				
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			jsonObject.accumulate(GlobalConstant.RET_JSON_RESULT, GlobalConstant.RET_FAIL);
+			jsonObject.accumulate(GlobalConstant.RET_MESSAGE, "领取失败,请联系管理员");
+		}
+		return jsonObject.toString();
+	}
+	
+	
+	@RequestMapping("buyappointed")
+	@ResponseBody
+	public String buyAppointed(String appointId, HttpSession session){
+		User user = (User)session.getAttribute(Globals.SESSION_USER_INFO);
+		JSONObject jsonObject = new JSONObject();
+		try {
+			if(orderCustomerService.saveOrderAppointed(appointId, user.getId(), user.getId())){
+				jsonObject.accumulate(GlobalConstant.RET_JSON_RESULT, GlobalConstant.RET_SUCCESS);
+			}else {
 				jsonObject.accumulate(GlobalConstant.RET_JSON_RESULT, GlobalConstant.RET_FAIL);
 				jsonObject.accumulate(GlobalConstant.RET_MESSAGE, "余额不足");
 			}
-			
+				
 		} catch (Exception e) {
 			// TODO: handle exception
 			jsonObject.accumulate(GlobalConstant.RET_JSON_RESULT, GlobalConstant.RET_FAIL);

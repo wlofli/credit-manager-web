@@ -46,8 +46,9 @@ public class CommonController {
 		
 		String code = SecurityUtils.randomStr(4);
 		
-		boolean result = commonService.sendCodeByPhone(phone,code);
-		
+//		boolean result = commonService.sendCodeByPhone(phone,code);
+		//测试用
+		boolean result = true;
 		if (result) {
 			log.info("验证码发送成功---手机号："+phone+"；验证码："+code);
 			request.getSession().setAttribute(Globals.SESSION_PHONE_CODE, code);

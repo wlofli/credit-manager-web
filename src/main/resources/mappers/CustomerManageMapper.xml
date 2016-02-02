@@ -8,25 +8,35 @@
 		    c_manager_info mi,
 		    m_order_info oi
 		where
-		    mi.id = oi.credit_manager_id;
+<!-- 		    add by lzc -->
+		    mi.id = oi.receiver
+			and oi.status = 10 and mi.id = #{managerId}
+<!-- 			end -->
 	</select>
 	
 	<select id="getEvaluationsOrderByStar" parameterType="hashmap" resultType="com.xinyue.credit.model.CustomerEvaluation">
 		select 
 		    oi.code as orderId,
-		    oi.name as productName,
-		    oi.member_id as applicant,
+	    	p.`name` AS productName,
+			a.NAME AS applicant,
 		    date_format(oi.evaluation_time, '%Y-%m-%d') as evaluationTime,
 		    oi.level as starLevel
 		from
 		    c_manager_info mi,
 		    m_order_info oi
+<!-- 		add by lzc -->
+		LEFT JOIN m_product_info p on  p.id = oi.product_info
+		LEFT JOIN m_applicant_info a on a.id = oi.applicant_info
+<!-- 		end -->
 		where
-		    mi.id = oi.credit_manager_id
+		    mi.id = oi.receiver
+<!-- 		    add by lzc -->
+		    and oi.status = 10 and mi.id = #{managerId}
+<!-- 		    end -->
 		    <if test="star!=0">
 		    and oi.level = #{star}
 		    </if>
-		order by oi.oi.evaluation_time desc
+		order by oi.evaluation_time desc
 		limit #{index} , 10;	
 	</select>
 </mapper>

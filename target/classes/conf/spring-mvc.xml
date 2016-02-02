@@ -51,6 +51,8 @@
  	<mvc:interceptors>
 	   <mvc:interceptor>
 	       <mvc:mapping path="/credit/**"/>
+	       <mvc:mapping path="/order/**"/>
+	       <mvc:mapping path="/home/home"/>
 <!-- 	       <mvc:exclude-mapping path="/css/**"/>
 	       <mvc:exclude-mapping path="/html/**"/>
 	       <mvc:exclude-mapping path="/images/**"/>
